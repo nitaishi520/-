@@ -24,6 +24,18 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+        .chat-message {
+            max-width: 80%;
+            margin-bottom: 1rem;
+        }
+        .user-message {
+            margin-left: auto;
+            text-align: right;
+        }
+        .ai-message {
+            margin-right: auto;
+            text-align: left;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -36,6 +48,7 @@
                     <a href="#home" class="text-gray-600 hover:text-blue-600 transition">首页</a>
                     <a href="#server" class="text-gray-600 hover:text-blue-600 transition">服务器</a>
                     <a href="#about" class="text-gray-600 hover:text-blue-600 transition">关于</a>
+                    <a href="#ai-chat" class="text-gray-600 hover:text-blue-600 transition">AI助手</a>
                 </div>
             </div>
         </div>
@@ -57,7 +70,6 @@
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12">🎮 Minecraft 服务器</h2>
             
-            <!-- 修正这里：确保三个卡片都在同一个grid内 -->
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- 服务器状态卡片 -->
                 <div class="card-hover bg-gray-50 p-6 rounded-xl border border-gray-200">
@@ -90,17 +102,17 @@
                     <p class="text-sm text-gray-500 mt-2 text-center">如果按钮无效，请手动添加服务器地址</p>
                 </div>
 
-                <!-- 实时玩家状态卡片 - 现在正确地放在grid内部 -->
+                <!-- 实时玩家状态卡片 -->
                 <div class="card-hover bg-purple-50 p-6 rounded-xl border border-purple-200">
                     <h3 class="text-xl font-semibold mb-4">👥 实时玩家状态</h3>
                     <div id="server-status">
                         <p class="text-gray-600">正在检查服务器状态...</p>
                     </div>
                 </div>
-            </div> <!-- 这里关闭grid -->
-        </div> <!-- 这里关闭max-w-4xl容器 -->
+            </div>
+        </div>
 
-        <!-- JavaScript代码放在这里 -->
+        <!-- Minecraft服务器状态检查脚本 -->
         <script>
         // 检查Minecraft服务器状态
         async function checkServerStatus() {
@@ -165,6 +177,42 @@
         </div>
     </section>
 
+    <!-- AI 聊天区域 -->
+    <section id="ai-chat" class="py-20 bg-gradient-to-r from-purple-50 to-blue-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">🤖 与我的 AI 助手对话</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <!-- 聊天消息容器 -->
+                <div id="chat-messages" class="h-96 overflow-y-auto mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="text-center text-gray-500">对话将在这里显示...</div>
+                </div>
+                
+                <!-- 输入区域 -->
+                <div class="flex space-x-4">
+                    <input type="text" id="user-input" 
+                           placeholder="输入你的问题..." 
+                           class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="send-button" 
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition">
+                        发送
+                    </button>
+                </div>
+                
+                <!-- 状态指示 -->
+                <div id="status" class="mt-2 text-sm text-gray-500"></div>
+                
+                <!-- 说明 -->
+                <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <p class="text-sm text-yellow-800">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        注意：此功能需要本地运行 LM Studio 并加载 AI 模型才能正常工作。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 页脚 -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-4xl mx-auto px-4 text-center">
@@ -172,5 +220,122 @@
             <p class="text-gray-400 mt-2">Powered by Vercel</p>
         </div>
     </footer>
+
+    <!-- AI 聊天功能脚本 -->
+    <script>
+    // LM Studio 配置
+    const LM_STUDIO_CONFIG = {
+        baseURL: 'http://localhost:1234/v1',
+        model: "qwen2.5-7b-instruct-1m/Qwen2.5-7B-Instruct-1M-Q4_K_M.gguf"
+    };
+
+    // DOM 元素
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const statusElement = document.getElementById('status');
+
+    // 添加消息到聊天窗口
+    function addMessage(role, content) {
+        // 如果是初始状态消息，清除它
+        if (chatMessages.innerHTML.includes('对话将在这里显示')) {
+            chatMessages.innerHTML = '';
+        }
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${role === 'user' ? 'user-message' : 'ai-message'}`;
+        
+        const bubble = document.createElement('div');
+        bubble.className = `inline-block px-4 py-2 rounded-lg ${
+            role === 'user' 
+                ? 'bg-blue-500 text-white rounded-br-none' 
+                : 'bg-gray-200 text-gray-800 rounded-bl-none'
+        }`;
+        bubble.textContent = content;
+        
+        messageDiv.appendChild(bubble);
+        chatMessages.appendChild(messageDiv);
+        
+        // 滚动到底部
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // 查询 LM Studio
+    async function queryLMStudio(userMessage) {
+        try {
+            statusElement.textContent = 'AI 正在思考...';
+            
+            const response = await fetch(`${LM_STUDIO_CONFIG.baseURL}/chat/completions`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: LM_STUDIO_CONFIG.model,
+                    messages: [
+                        { role: "system", content: "你是一个有用的助手，请用中文回答。" },
+                        { role: "user", content: userMessage }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: -1,
+                    stream: false
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`服务器响应错误: ${response.status}`);
+            }
+
+            const data = await response.json();
+            statusElement.textContent = '就绪';
+            
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error('调用 AI 失败:', error);
+            statusElement.textContent = `错误: ${error.message}`;
+            return `抱歉，出现了问题：${error.message}`;
+        }
+    }
+
+    // 发送消息
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        // 清空输入框
+        userInput.value = '';
+        
+        // 显示用户消息
+        addMessage('user', message);
+        
+        // 禁用按钮，防止重复发送
+        sendButton.disabled = true;
+        sendButton.textContent = '发送中...';
+        
+        // 获取并显示AI回复
+        const aiResponse = await queryLMStudio(message);
+        addMessage('assistant', aiResponse);
+        
+        // 重新启用按钮
+        sendButton.disabled = false;
+        sendButton.textContent = '发送';
+    }
+
+    // 事件监听
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // 初始化聊天
+    setTimeout(() => {
+        if (!chatMessages.innerHTML.includes('user-message') && 
+            !chatMessages.innerHTML.includes('ai-message')) {
+            addMessage('assistant', '你好！我是基于 Qwen2.5-7B 模型的AI助手，有什么我可以帮你的吗？');
+        }
+    }, 1000);
+    </script>
 </body>
 </html>
