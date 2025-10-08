@@ -24,18 +24,6 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .chat-message {
-            max-width: 80%;
-            margin-bottom: 1rem;
-        }
-        .user-message {
-            margin-left: auto;
-            text-align: right;
-        }
-        .ai-message {
-            margin-right: auto;
-            text-align: left;
-        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -200,13 +188,13 @@
                 </div>
                 
                 <!-- 状态指示 -->
-                <div id="status" class="mt-2 text-sm text-gray-500"></div>
+                <div id="status" class="mt-2 text-sm text-gray-500">就绪</div>
                 
                 <!-- 说明 -->
-                <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                    <p class="text-sm text-yellow-800">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        注意：此功能需要本地运行 LM Studio 并加载 AI 模型才能正常工作。
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="text-sm text-blue-800">
+                        <i class="fas fa-network-wired mr-1"></i>
+                        通过内网穿透连接本地 LM Studio (57c42474b0ea.ofalias.net:57016)
                     </p>
                 </div>
             </div>
@@ -223,10 +211,10 @@
 
     <!-- AI 聊天功能脚本 -->
     <script>
-    // LM Studio 配置
+    // LM Studio 配置 - 内网穿透版
     const LM_STUDIO_CONFIG = {
-        baseURL: 'http://localhost:1234/v1',
-        model: "qwen2.5-7b-instruct-1m/Qwen2.5-7B-Instruct-1M-Q4_K_M.gguf"
+        baseURL: 'http://57c42474b0ea.ofalias.net:57016/v1',
+        model: "qwen2.5-7b-instruct-lm"
     };
 
     // DOM 元素
@@ -237,16 +225,15 @@
 
     // 添加消息到聊天窗口
     function addMessage(role, content) {
-        // 如果是初始状态消息，清除它
         if (chatMessages.innerHTML.includes('对话将在这里显示')) {
             chatMessages.innerHTML = '';
         }
         
         const messageDiv = document.createElement('div');
-        messageDiv.className = `chat-message ${role === 'user' ? 'user-message' : 'ai-message'}`;
+        messageDiv.className = `mb-4 ${role === 'user' ? 'text-right' : 'text-left'}`;
         
         const bubble = document.createElement('div');
-        bubble.className = `inline-block px-4 py-2 rounded-lg ${
+        bubble.className = `inline-block max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
             role === 'user' 
                 ? 'bg-blue-500 text-white rounded-br-none' 
                 : 'bg-gray-200 text-gray-800 rounded-bl-none'
@@ -256,7 +243,6 @@
         messageDiv.appendChild(bubble);
         chatMessages.appendChild(messageDiv);
         
-        // 滚动到底部
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
@@ -264,6 +250,8 @@
     async function queryLMStudio(userMessage) {
         try {
             statusElement.textContent = 'AI 正在思考...';
+            sendButton.disabled = true;
+            sendButton.textContent = '发送中...';
             
             const response = await fetch(`${LM_STUDIO_CONFIG.baseURL}/chat/completions`, {
                 method: 'POST',
@@ -273,27 +261,34 @@
                 body: JSON.stringify({
                     model: LM_STUDIO_CONFIG.model,
                     messages: [
-                        { role: "system", content: "你是一个有用的助手，请用中文回答。" },
+                        { role: "system", content: "你是一个有用的助手，请用中文回答。回答要简洁明了。" },
                         { role: "user", content: userMessage }
                     ],
                     temperature: 0.7,
-                    max_tokens: -1,
+                    max_tokens: 500,
                     stream: false
                 })
             });
 
             if (!response.ok) {
-                throw new Error(`服务器响应错误: ${response.status}`);
+                throw new Error(`HTTP错误: ${response.status}`);
             }
 
             const data = await response.json();
             statusElement.textContent = '就绪';
             
-            return data.choices[0].message.content;
+            if (data.choices && data.choices[0] && data.choices[0].message) {
+                return data.choices[0].message.content;
+            } else {
+                throw new Error('API返回数据格式异常');
+            }
         } catch (error) {
             console.error('调用 AI 失败:', error);
             statusElement.textContent = `错误: ${error.message}`;
-            return `抱歉，出现了问题：${error.message}`;
+            return `抱歉，AI助手暂时无法连接。错误信息: ${error.message}`;
+        } finally {
+            sendButton.disabled = false;
+            sendButton.textContent = '发送';
         }
     }
 
@@ -302,23 +297,11 @@
         const message = userInput.value.trim();
         if (!message) return;
 
-        // 清空输入框
         userInput.value = '';
-        
-        // 显示用户消息
         addMessage('user', message);
         
-        // 禁用按钮，防止重复发送
-        sendButton.disabled = true;
-        sendButton.textContent = '发送中...';
-        
-        // 获取并显示AI回复
         const aiResponse = await queryLMStudio(message);
         addMessage('assistant', aiResponse);
-        
-        // 重新启用按钮
-        sendButton.disabled = false;
-        sendButton.textContent = '发送';
     }
 
     // 事件监听
@@ -329,13 +312,32 @@
         }
     });
 
-    // 初始化聊天
-    setTimeout(() => {
-        if (!chatMessages.innerHTML.includes('user-message') && 
-            !chatMessages.innerHTML.includes('ai-message')) {
-            addMessage('assistant', '你好！我是基于 Qwen2.5-7B 模型的AI助手，有什么我可以帮你的吗？');
+    // 连接测试
+    async function testConnection() {
+        try {
+            statusElement.textContent = '测试LM Studio连接...';
+            const response = await fetch(`${LM_STUDIO_CONFIG.baseURL}/models`);
+            
+            if (response.ok) {
+                const data = await response.json();
+                statusElement.textContent = `已连接到LM Studio`;
+                
+                setTimeout(() => {
+                    if (chatMessages.innerHTML.includes('对话将在这里显示')) {
+                        addMessage('assistant', '你好！AI助手已就绪，有什么我可以帮你的吗？');
+                    }
+                }, 500);
+            } else {
+                statusElement.textContent = `连接测试失败: ${response.status}`;
+            }
+        } catch (error) {
+            statusElement.textContent = '无法连接到LM Studio';
+            console.error('连接测试失败:', error);
         }
-    }, 1000);
+    }
+
+    // 页面加载时测试连接
+    setTimeout(testConnection, 1000);
     </script>
 </body>
 </html>
