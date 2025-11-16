@@ -65,6 +65,28 @@
         .faq-item.active .faq-answer {
             max-height: 500px;
         }
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .command-table th {
+            background-color: #374151;
+            color: #10b981;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #4B5563;
+        }
+        .command-table td {
+            padding: 12px;
+            border: 1px solid #4B5563;
+            color: #D1D5DB;
+        }
+        .command-table tr:nth-child(even) {
+            background-color: #374151;
+        }
+        .command-table tr:hover {
+            background-color: #4B5563;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
@@ -79,6 +101,7 @@
                 </div>
                 <div class="space-x-6 hidden md:flex">
                     <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
+                    <a href="#commands" class="text-gray-300 hover:text-green-400 transition">指令帮助</a>
                     <a href="#contact" class="text-gray-300 hover:text-green-400 transition">联系我们</a>
                 </div>
                 <div class="md:hidden">
@@ -90,6 +113,7 @@
             <!-- 移动端菜单 -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
+                <a href="#commands" class="block py-2 text-gray-300 hover:text-green-400">指令帮助</a>
                 <a href="#contact" class="block py-2 text-gray-300 hover:text-green-400">联系我们</a>
             </div>
         </div>
@@ -119,7 +143,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-2xl font-bold text-center mb-8 text-green-400">🚀 快速帮助</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <a href="#joining" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
                     <div class="text-4xl text-green-400 mb-4">
                         <i class="fas fa-door-open"></i>
@@ -128,27 +152,269 @@
                     <p class="text-gray-400">如何连接和进入服务器</p>
                 </a>
                 
-                <a href="#rules" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                <a href="#commands" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
                     <div class="text-4xl text-yellow-400 mb-4">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">指令帮助</h3>
+                    <p class="text-gray-400">查看所有可用指令</p>
+                </a>
+                
+                <a href="#rules" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                    <div class="text-4xl text-red-400 mb-4">
                         <i class="fas fa-gavel"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">服务器规则</h3>
                     <p class="text-gray-400">了解服务器规则和指南</p>
                 </a>
                 
-                <a href="#commands" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                <a href="#faq" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
                     <div class="text-4xl text-blue-400 mb-4">
-                        <i class="fas fa-terminal"></i>
+                        <i class="fas fa-question-circle"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">指令指南</h3>
-                    <p class="text-gray-400">学习服务器可用指令</p>
+                    <h3 class="text-xl font-semibold mb-2">常见问题</h3>
+                    <p class="text-gray-400">快速解答常见问题</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 帮助内容区域 -->
-    <section class="py-16 bg-gray-900">
+    <!-- 指令帮助区域 -->
+    <section id="commands" class="py-16 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-green-400 border-b border-gray-700 pb-2">
+                <i class="fas fa-terminal mr-3"></i>📋 技能插件命令大全
+            </h2>
+
+            <!-- 家园传送命令 -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-blue-400">🏠 家园传送命令</h3>
+                <div class="overflow-x-auto">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>命令</th>
+                                <th>语法</th>
+                                <th>功能说明</th>
+                                <th>消耗经验</th>
+                                <th>冷却时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/sethome</code></td>
+                                <td><code>/sethome [名称]</code></td>
+                                <td>设置家的位置（可在床上使用）</td>
+                                <td>无</td>
+                                <td>无</td>
+                            </tr>
+                            <tr>
+                                <td><code>/home</code></td>
+                                <td><code>/home</code></td>
+                                <td>传送到已设置的家</td>
+                                <td>30点</td>
+                                <td>10分钟</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 玩家传送命令 -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-purple-400">👥 玩家传送命令</h3>
+                <div class="overflow-x-auto">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>命令</th>
+                                <th>语法</th>
+                                <th>功能说明</th>
+                                <th>消耗经验</th>
+                                <th>冷却时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/tpa</code></td>
+                                <td><code>/tpa &lt;玩家名&gt;</code></td>
+                                <td>请求传送到其他玩家位置</td>
+                                <td>15点（发起者）</td>
+                                <td>1分钟</td>
+                            </tr>
+                            <tr>
+                                <td><code>/tpaagree</code></td>
+                                <td><code>/tpaagree</code></td>
+                                <td>同意传送请求</td>
+                                <td>5点（被邀请者）</td>
+                                <td>无</td>
+                            </tr>
+                            <tr>
+                                <td><code>/tparefuse</code></td>
+                                <td><code>/tparefuse</code></td>
+                                <td>拒绝传送请求</td>
+                                <td>无</td>
+                                <td>无</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-yellow-500">
+                    <p class="text-yellow-300"><strong>注意：</strong>如果超时60秒或者对方拒绝传送，发起者将返还15点经验值。</p>
+                </div>
+            </div>
+
+            <!-- 死亡传送命令 -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-red-400">💀 死亡传送命令</h3>
+                <div class="overflow-x-auto">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>命令</th>
+                                <th>语法</th>
+                                <th>功能说明</th>
+                                <th>消耗经验</th>
+                                <th>冷却时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/diew</code></td>
+                                <td><code>/diew</code></td>
+                                <td>传送到上次死亡点，获得10秒隐身效果</td>
+                                <td>50点</td>
+                                <td>5分钟</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-green-500">
+                    <p class="text-green-300"><strong>提示：</strong>每次死亡后会弹出提示询问是否传送到死亡点。</p>
+                </div>
+            </div>
+
+            <!-- 经验管理系统 -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-yellow-400">📚 经验管理系统</h3>
+                
+                <!-- 经验果命令 -->
+                <h4 class="text-xl font-bold mb-4 text-yellow-300">经验果命令</h4>
+                <div class="overflow-x-auto mb-6">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>命令</th>
+                                <th>语法</th>
+                                <th>功能说明</th>
+                                <th>消耗经验</th>
+                                <th>冷却时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/exphuoqu</code></td>
+                                <td><code>/exphuoqu &lt;经验值&gt;</code></td>
+                                <td>将经验存储到经验果中</td>
+                                <td>指定经验值</td>
+                                <td>无</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-red-500">
+                    <p class="text-red-300"><strong>重要：</strong>经验果会随时间腐烂，每20分钟减少10点经验。创建经验果不能少于10点经验。</p>
+                </div>
+
+                <!-- 经验书命令 -->
+                <h4 class="text-xl font-bold mt-8 mb-4 text-yellow-300">经验书命令</h4>
+                <div class="overflow-x-auto mb-6">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>命令</th>
+                                <th>语法</th>
+                                <th>功能说明</th>
+                                <th>消耗经验</th>
+                                <th>冷却时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/expss</code></td>
+                                <td><code>/expss &lt;经验值&gt;</code></td>
+                                <td>将经验存储到手持经验书中</td>
+                                <td>指定经验值</td>
+                                <td>无</td>
+                            </tr>
+                            <tr>
+                                <td><code>/noexpss</code></td>
+                                <td><code>/noexpss &lt;经验值&gt;</code></td>
+                                <td>从手持经验书中提取经验</td>
+                                <td>无</td>
+                                <td>无</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 经验书等级 -->
+                <h4 class="text-xl font-bold mt-8 mb-4 text-green-300">经验书等级</h4>
+                <div class="overflow-x-auto">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>等级</th>
+                                <th>最大容量</th>
+                                <th>合成材料</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>一级</td>
+                                <td>100点</td>
+                                <td>皮革 + 书 + 青金石 + 金锭</td>
+                            </tr>
+                            <tr>
+                                <td>二级</td>
+                                <td>500点</td>
+                                <td>金块 + 一级经验书</td>
+                            </tr>
+                            <tr>
+                                <td>三级</td>
+                                <td>1000点</td>
+                                <td>青金石块 + 二级经验书</td>
+                            </tr>
+                            <tr>
+                                <td>四级</td>
+                                <td>3000点</td>
+                                <td>钻石块 + 三级经验书</td>
+                            </tr>
+                            <tr>
+                                <td>五级</td>
+                                <td>10000点</td>
+                                <td>下界合金块 + 四级经验书</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 使用提示 -->
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-blue-500">
+                <h3 class="text-xl font-bold mb-4 text-blue-300">💡 使用提示</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li><strong>所有传送命令</strong>都会播放粒子效果和音效，提供更好的视觉反馈</li>
+                    <li><strong>经验相关命令</strong>会显示当前等级和经验进度</li>
+                    <li><strong>冷却时间</strong>可以在配置文件中调整</li>
+                    <li><strong>权限节点</strong>：所有玩家默认拥有使用权限 (<code>jineng.*</code>)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 其他帮助内容区域 -->
+    <section class="py-16 bg-gray-800">
         <div class="max-w-6xl mx-auto px-4">
             <!-- 加入服务器 -->
             <div id="joining" class="mb-16">
@@ -157,7 +423,7 @@
                 </h2>
                 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                    <div class="help-category bg-gray-700 p-6 rounded-xl">
                         <h3 class="text-xl font-semibold mb-4 text-blue-400">Java版加入方法</h3>
                         <ol class="list-decimal list-inside space-y-3 text-gray-300">
                             <li>打开Minecraft Java版</li>
@@ -176,7 +442,7 @@
                         </div>
                     </div>
                     
-                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                    <div class="help-category bg-gray-700 p-6 rounded-xl">
                         <h3 class="text-xl font-semibold mb-4 text-purple-400">基岩版加入方法</h3>
                         <ol class="list-decimal list-inside space-y-3 text-gray-300">
                             <li>打开Minecraft基岩版</li>
@@ -204,7 +470,7 @@
                 </h2>
                 
                 <div class="space-y-6">
-                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                    <div class="help-category bg-gray-700 p-6 rounded-xl">
                         <div class="flex items-start">
                             <i class="fas fa-shield-alt text-green-400 text-2xl mt-1 mr-4"></i>
                             <div>
@@ -214,7 +480,7 @@
                         </div>
                     </div>
                     
-                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                    <div class="help-category bg-gray-700 p-6 rounded-xl">
                         <div class="flex items-start">
                             <i class="fas fa-ban text-red-400 text-2xl mt-1 mr-4"></i>
                             <div>
@@ -222,81 +488,6 @@
                                 <p class="text-gray-300">我们强烈不建议也不允许使用任何形式的外挂程序。请勿使用、宣传或分享外挂相关信息，一经发现将严肃处理。</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="help-category bg-gray-800 p-6 rounded-xl">
-                        <div class="flex items-start">
-                            <i class="fas fa-heart text-red-400 text-2xl mt-1 mr-4"></i>
-                            <div>
-                                <h3 class="text-xl font-semibold mb-2 text-yellow-400">资源管理</h3>
-                                <p class="text-gray-300">本服务器中，经验值和生命值是非常重要的资源。请合理利用，避免不必要的浪费。特别是经验值，建议尽可能多地收集和保存。</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="help-category bg-gray-800 p-6 rounded-xl">
-                        <div class="flex items-start">
-                            <i class="fas fa-users text-blue-400 text-2xl mt-1 mr-4"></i>
-                            <div>
-                                <h3 class="text-xl font-semibold mb-2 text-blue-400">玩家行为</h3>
-                                <p class="text-gray-300">请尊重其他玩家，不使用侮辱性语言，不进行恶意破坏行为。共同营造友好的游戏社区环境。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 指令指南 -->
-            <div id="commands" class="mb-16">
-                <h2 class="text-3xl font-bold mb-8 text-blue-400 border-b border-gray-700 pb-2">
-                    <i class="fas fa-terminal mr-3"></i>指令指南
-                </h2>
-                
-                <div class="bg-gray-800 p-6 rounded-xl">
-                    <p class="text-gray-300 mb-6">以下是一些常用的服务器指令，可以帮助您更好地享受游戏：</p>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="border-b border-gray-700">
-                                    <th class="py-3 px-4 text-green-400">指令</th>
-                                    <th class="py-3 px-4 text-green-400">描述</th>
-                                    <th class="py-3 px-4 text-green-400">用法</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-3 px-4 font-mono">/home</td>
-                                    <td class="py-3 px-4 text-gray-300">快速回到您的家</td>
-                                    <td class="py-3 px-4 font-mono text-gray-400">/home</td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-3 px-4 font-mono">/sethome</td>
-                                    <td class="py-3 px-4 text-gray-300">设置您家的位置</td>
-                                    <td class="py-3 px-4 font-mono text-gray-400">/sethome</td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-3 px-4 font-mono">/tpa [玩家]</td>
-                                    <td class="py-3 px-4 text-gray-300">请求传送到指定玩家</td>
-                                    <td class="py-3 px-4 font-mono text-gray-400">/tpa Steve</td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-3 px-4 font-mono">/tpaccept</td>
-                                    <td class="py-3 px-4 text-gray-300">接受传送请求</td>
-                                    <td class="py-3 px-4 font-mono text-gray-400">/tpaccept</td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-3 px-4 font-mono">/spawn</td>
-                                    <td class="py-3 px-4 text-gray-300">返回出生点</td>
-                                    <td class="py-3 px-4 font-mono text-gray-400">/spawn</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 px-4 font-mono">/help</td>
-                                    <td class="py-3 px-4 text-gray-300">查看服务器帮助</td>
-                                    <td class="py-3 px-4 font-mono text-gray-400">/help</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -308,7 +499,7 @@
                 </h2>
                 
                 <div class="space-y-4">
-                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                    <div class="faq-item bg-gray-700 p-6 rounded-xl">
                         <div class="faq-question flex justify-between items-center">
                             <h3 class="text-xl font-semibold text-gray-200">服务器支持哪些Minecraft版本？</h3>
                             <i class="fas fa-chevron-down text-gray-400"></i>
@@ -318,43 +509,13 @@
                         </div>
                     </div>
                     
-                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                    <div class="faq-item bg-gray-700 p-6 rounded-xl">
                         <div class="faq-question flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-200">服务器有白名单吗？如何申请？</h3>
+                            <h3 class="text-xl font-semibold text-gray-200">经验果和经验书有什么区别？</h3>
                             <i class="fas fa-chevron-down text-gray-400"></i>
                         </div>
                         <div class="faq-answer mt-4 text-gray-300">
-                            <p>本服务器目前没有白名单限制，任何玩家都可以直接加入。如果未来启用白名单系统，我们会在官网和游戏内公告。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
-                        <div class="faq-question flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-200">服务器会重置地图吗？</h3>
-                            <i class="fas fa-chevron-down text-gray-400"></i>
-                        </div>
-                        <div class="faq-answer mt-4 text-gray-300">
-                            <p>我们目前没有重置地图的计划。如果未来需要重置，我们会提前通知所有玩家，并尽可能提供存档下载。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
-                        <div class="faq-question flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-200">如何举报违规玩家？</h3>
-                            <i class="fas fa-chevron-down text-gray-400"></i>
-                        </div>
-                        <div class="faq-answer mt-4 text-gray-300">
-                            <p>如果您发现玩家有违规行为，请通过邮箱 <span class="text-green-400">3653615194@qq.com</span> 联系管理员，提供违规玩家的ID、违规行为和证据（截图或视频）。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
-                        <div class="faq-question flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-200">服务器有资源世界或副世界吗？</h3>
-                            <i class="fas fa-chevron-down text-gray-400"></i>
-                        </div>
-                        <div class="faq-answer mt-4 text-gray-300">
-                            <p>是的，服务器提供资源世界供玩家采集资源。资源世界会定期重置以确保资源充足。具体进入方式请在游戏中查看相关指令。</p>
+                            <p>经验果会随时间腐烂，适合短期存储；经验书可以长期保存经验，但需要合成不同等级的经验书来增加存储容量。</p>
                         </div>
                     </div>
                 </div>
@@ -363,7 +524,7 @@
     </section>
 
     <!-- 联系我们 -->
-    <section id="contact" class="py-16 bg-gray-800">
+    <section id="contact" class="py-16 bg-gray-900">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-400">📧 联系我们</h2>
             
@@ -384,16 +545,6 @@
                     </div>
                     
                     <div class="text-center mt-8">
-                        <p class="text-gray-300 mb-4">请详细描述您遇到的问题，包括：</p>
-                        <ul class="list-disc list-inside text-gray-400 text-left max-w-md mx-auto">
-                            <li>您的游戏ID</li>
-                            <li>问题发生的具体时间</li>
-                            <li>问题的详细描述</li>
-                            <li>相关截图或视频（如果有）</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="text-center mt-8">
                         <a href="mailto:3653615194@qq.com" class="minecraft-btn text-white py-3 px-8 rounded-lg font-semibold inline-flex items-center">
                             <i class="fas fa-paper-plane mr-2"></i>
                             发送邮件
@@ -405,7 +556,7 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+    <footer class="bg-gray-800 text-gray-400 py-8 border-t border-gray-700">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <p>&copy; 2025 nitaishi.top - Minecraft服务器帮助中心</p>
             <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
