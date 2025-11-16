@@ -48,6 +48,31 @@
             border-left-color: #10b981;
             background-color: #1f2937;
         }
+        .urgent-announcement {
+            border: 2px solid #dc2626;
+            background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+        .compensation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .player-card {
+            background: rgba(55, 65, 81, 0.8);
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 4px solid;
+        }
+        .player-creeper { border-left-color: #22c55e; }
+        .player-woainitaishi { border-left-color: #3b82f6; }
+        .player-pojoy { border-left-color: #a855f7; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
@@ -183,7 +208,125 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-yellow-400">📢 服务器公告</h2>
             
             <div class="space-y-6">
-                <!-- 最新公告 -->
+                <!-- 补偿公告 -->
+                <div class="bg-gradient-to-r from-purple-900 to-blue-900 p-6 rounded-xl border-2 border-yellow-500">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-gift text-yellow-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-white">🎁 数据恢复补偿方案 - 具体安排</h3>
+                        <span class="ml-auto text-gray-300 text-sm">2025年11月18日</span>
+                    </div>
+                    
+                    <div class="space-y-4 text-gray-200">
+                        <!-- 通用补偿 -->
+                        <div class="bg-green-900 bg-opacity-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-300 mb-3 flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                全体玩家补偿
+                            </h4>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li><span class="text-yellow-300">飞行权限</span>：下周六全天所有玩家可获得飞行权限</li>
+                                <li><span class="text-yellow-300">经验补偿</span>：所有老玩家（非新人）获得10级经验</li>
+                            </ul>
+                        </div>
+
+                        <!-- 个人补偿 -->
+                        <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-300 mb-3 flex items-center">
+                                <i class="fas fa-user-check mr-2"></i>
+                                个人专属补偿
+                            </h4>
+                            <div class="compensation-grid">
+                                <!-- Creeper_xu -->
+                                <div class="player-card player-creeper">
+                                    <h5 class="font-bold text-green-400 mb-2">Creeper_xu</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 两组骨粉</li>
+                                        <li>• 所有农作物各1组</li>
+                                        <li>• 三组原木</li>
+                                        <li>• 三组原石</li>
+                                        <li>• 每个工作站方块各1个</li>
+                                        <li>• 三组面包</li>
+                                        <li>• 20级经验</li>
+                                        <li>• 1颗心</li>
+                                        <li>• 10张床</li>
+                                        <li>• 刷铁机重建协助</li>
+                                    </ul>
+                                </div>
+
+                                <!-- .woainitaishi -->
+                                <div class="player-card player-woainitaishi">
+                                    <h5 class="font-bold text-blue-400 mb-2">.woainitaishi</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 二组铁锭</li>
+                                        <li>• 钻石若干</li>
+                                    </ul>
+                                </div>
+
+                                <!-- pojoy3745 -->
+                                <div class="player-card player-pojoy">
+                                    <h5 class="font-bold text-purple-400 mb-2">pojoy3745</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 每个工作方块各1个</li>
+                                        <li>• 1组原石</li>
+                                        <li>• 1组木头</li>
+                                        <li>• 2个牛生物蛋</li>
+                                        <li>• 1个村民</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4 pt-4 border-t border-gray-600">
+                            <p class="text-gray-300">请相关玩家联系管理员领取补偿物品</p>
+                            <p class="text-gray-400 text-sm mt-2">感谢大家的理解与支持！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 紧急公告 -->
+                <div class="urgent-announcement p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-white">重要通知：服务器数据恢复与补偿方案</h3>
+                        <span class="ml-auto text-gray-300 text-sm">2025年11月16日</span>
+                    </div>
+                    
+                    <div class="space-y-4 text-gray-200">
+                        <div class="bg-red-900 bg-opacity-50 p-4 rounded-lg border border-red-700">
+                            <div class="flex items-start">
+                                <i class="fas fa-heart-broken text-red-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-300 mb-2">致各位亲爱的玩家：</h4>
+                                    <p class="mb-3">我们怀着沉重的心情向大家告知一个不幸的消息。由于服务器在2025年11月16日下午1点后遭遇突发技术故障，导致部分数据意外丢失。</p>
+                                    <p class="mb-3">尽管我们竭尽全力尝试恢复，但为确保服务器的稳定运行，我们不得不将数据回滚至当天下午1点的备份状态。</p>
+                                    <p>我们深知各位玩家在此期间付出的努力和心血，对于此次意外给大家带来的损失和不便，我们表示最诚挚的歉意。😢</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-900 bg-opacity-50 p-4 rounded-lg border border-green-700">
+                            <div class="flex items-start">
+                                <i class="fas fa-gift text-green-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-300 mb-2">补偿方案</h4>
+                                    <p class="mb-3">为表达我们的歉意并感谢大家的理解与支持，我们将提供以下补偿：</p>
+                                    <ul class="list-disc list-inside space-y-2 ml-4">
+                                        <li><span class="text-yellow-300 font-semibold">全天飞行权限</span>：特定日期全天，所有玩家将获得飞行权限</li>
+                                        <li><span class="text-yellow-300 font-semibold">丰厚物资补偿</span>：根据玩家损失情况提供个性化补偿</li>
+                                        <li><span class="text-yellow-300 font-semibold">经验补偿</span>：为老玩家提供经验等级补偿</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6 pt-4 border-t border-gray-700">
+                            <p class="text-gray-300">再次感谢各位玩家的理解与支持，我们会继续努力为大家提供更好的游戏体验。</p>
+                            <p class="text-gray-400 text-sm mt-2">—— 服务器管理团队 敬上</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 最新常规公告 -->
                 <div class="bg-gray-800 p-6 rounded-xl border border-yellow-600">
                     <div class="flex items-center mb-4">
                         <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
@@ -240,60 +383,10 @@
                         
                         <div class="announcement-item bg-gray-700 p-4 rounded-lg">
                             <div class="flex items-start">
-                                <i class="fas fa-heart text-red-400 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-yellow-400">珍惜游戏资源</h4>
-                                    <p class="text-gray-300 mt-1">本服务器中，经验值和生命值是非常重要的资源。请合理利用，避免不必要的浪费。特别是经验值，建议尽可能多地收集和保存。</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="announcement-item bg-gray-700 p-4 rounded-lg">
-                            <div class="flex items-start">
-                                <i class="fas fa-magic text-blue-400 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-blue-400">便捷指令</h4>
-                                    <p class="text-gray-300 mt-1">服务器提供快速回家和传送到其他玩家的便捷指令，让您的游戏体验更加顺畅。</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="announcement-item bg-gray-700 p-4 rounded-lg">
-                            <div class="flex items-start">
                                 <i class="fas fa-question-circle text-purple-400 mt-1 mr-3"></i>
                                 <div>
                                     <h4 class="font-semibold text-purple-400">获取帮助</h4>
                                     <p class="text-gray-300 mt-1">如果您有任何疑问，请前往<a href="help.html" class="text-green-400 hover:underline">帮助中心</a>获取更多信息和支持。</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="announcement-item bg-gray-700 p-4 rounded-lg">
-                            <div class="flex items-start">
-                                <i class="fas fa-tools text-orange-400 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-orange-400">插件说明</h4>
-                                    <p class="text-gray-300 mt-1">本服务器使用的大部分插件均由服主自主开发，旨在提供更好的游戏体验。</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="announcement-item bg-gray-700 p-4 rounded-lg">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope text-indigo-400 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-indigo-400">意见反馈</h4>
-                                    <p class="text-gray-300 mt-1">如果您有任何意见、建议或疑问，欢迎通过邮箱 <span class="text-green-400">3653615194@qq.com</span> 与我们联系。</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="announcement-item bg-gray-700 p-4 rounded-lg">
-                            <div class="flex items-start">
-                                <i class="fas fa-hands-helping text-green-400 mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-green-400">感谢支持</h4>
-                                    <p class="text-gray-300 mt-1">感谢各位玩家的支持与配合，希望您在我们的服务器中度过愉快的游戏时光！</p>
                                 </div>
                             </div>
                         </div>
