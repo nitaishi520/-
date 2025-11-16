@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nitaishi.top - 个人空间与Minecraft服务器</title>
+    <title>Minecraft服务器 - nitaishi.top</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .hero-gradient {
-            background: linear-gradient(-45deg, #3b82f6, #1e40af, #1e3a8a);
+        .minecraft-gradient {
+            background: linear-gradient(-45deg, #3a7d34, #306230, #215732);
             background-size: 400% 400%;
             animation: gradient-bg 10s ease infinite;
         }
@@ -24,320 +24,256 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+        .server-address {
+            font-family: 'Courier New', monospace;
+            background-color: #1f2937;
+            color: #10b981;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #374151;
+        }
+        .minecraft-btn {
+            background-color: #3a7d34;
+            transition: all 0.3s ease;
+        }
+        .minecraft-btn:hover {
+            background-color: #306230;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-900 text-gray-100">
     <!-- 导航栏 -->
-    <nav class="bg-white shadow-sm sticky top-0 z-10">
+    <nav class="bg-gray-800 shadow-sm sticky top-0 z-10">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <div class="font-bold text-xl text-blue-600">nitaishi.top</div>
-                <div class="space-x-6">
-                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition">首页</a>
-                    <a href="#server" class="text-gray-600 hover:text-blue-600 transition">服务器</a>
-                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition">关于</a>
-                    <a href="#ai-chat" class="text-gray-600 hover:text-blue-600 transition">AI助手</a>
+                <div class="font-bold text-xl text-green-500 flex items-center">
+                    <i class="fas fa-cube mr-2"></i> nitaishi.top
                 </div>
+                <div class="space-x-6 hidden md:flex">
+                    <a href="#home" class="text-gray-300 hover:text-green-400 transition">首页</a>
+                    <a href="#server" class="text-gray-300 hover:text-green-400 transition">服务器</a>
+                    <a href="#announcements" class="text-gray-300 hover:text-green-400 transition">公告</a>
+                    <a href="#about" class="text-gray-300 hover:text-green-400 transition">关于</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-green-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#home" class="block py-2 text-gray-300 hover:text-green-400">首页</a>
+                <a href="#server" class="block py-2 text-gray-300 hover:text-green-400">服务器</a>
+                <a href="#announcements" class="block py-2 text-gray-300 hover:text-green-400">公告</a>
+                <a href="#about" class="block py-2 text-gray-300 hover:text-green-400">关于</a>
             </div>
         </div>
     </nav>
 
     <!-- 主页英雄区域 -->
-    <section id="home" class="hero-gradient text-white py-20">
+    <section id="home" class="minecraft-gradient text-white py-20">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-5xl font-bold mb-6">欢迎来到我的小站</h1>
-            <p class="text-xl mb-8 opacity-90">这里是我的个人空间，也是与朋友们在Minecraft中畅游的起点</p>
-            <a href="#server" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition inline-block">
-                了解我的服务器 <i class="fas fa-arrow-down ml-2"></i>
+            <h1 class="text-5xl font-bold mb-6">欢迎来到 Minecraft 服务器</h1>
+            <p class="text-xl mb-8 opacity-90">与朋友们一起探索、建造和冒险的乐园</p>
+            <a href="#server" class="minecraft-btn text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg">
+                立即加入 <i class="fas fa-gamepad ml-2"></i>
             </a>
         </div>
     </section>
 
     <!-- 服务器信息区域 -->
-    <section id="server" class="py-20 bg-white">
+    <section id="server" class="py-20 bg-gray-800">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">🎮 Minecraft 服务器</h2>
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">🎮 服务器信息</h2>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- 服务器状态卡片 -->
-                <div class="card-hover bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Java版服务器 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
                     <div class="flex items-center mb-4">
-                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-                        <h3 class="text-xl font-semibold">服务器在线</h3>
+                        <i class="fab fa-java text-orange-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Java版服务器</h3>
                     </div>
-                    <p class="text-gray-600 mb-4">服务器当前正在运行，欢迎加入！</p>
-                    <div class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">地址:</span>
-                            <code class="bg-gray-200 px-2 py-1 rounded">mc.nitaishi.top</code>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">地址:</span>
+                            <div class="server-address">bffc302bbe83.ofalias.com</div>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">端口:</span>
-                            <code class="bg-gray-200 px-2 py-1 rounded">52717</code>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">端口:</span>
+                            <div class="server-address">64533</div>
                         </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">版本:</span>
+                            <div class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">1.21.10</div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="minecraft://?addExternalServer=bffc302bbe83.ofalias.com:64533" 
+                           class="w-full minecraft-btn text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-plus-circle mr-2"></i>
+                            添加到服务器列表
+                        </a>
                     </div>
                 </div>
 
-                <!-- 快速加入卡片 -->
-                <div class="card-hover bg-blue-50 p-6 rounded-xl border border-blue-200">
-                    <h3 class="text-xl font-semibold mb-4">快速加入</h3>
-                    <p class="text-gray-700 mb-4">点击下方按钮一键加入游戏，或手动添加服务器地址。</p>
-                    <a href="minecraft:mc.nitaishi.top:52717" 
-                       class="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
-                        <i class="fas fa-gamepad mr-2"></i>
-                        一键加入服务器
-                    </a>
-                    <p class="text-sm text-gray-500 mt-2 text-center">如果按钮无效，请手动添加服务器地址</p>
+                <!-- 基岩版服务器 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mobile-alt text-blue-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">基岩版服务器</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">地址:</span>
+                            <div class="server-address">bffc302bbe83.ofalias.com</div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">端口:</span>
+                            <div class="server-address">23047</div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">版本:</span>
+                            <div class="bg-purple-900 text-purple-200 px-3 py-1 rounded-full text-sm">最新版本</div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="minecraft://?addExternalServer=bffc302bbe83.ofalias.com:23047" 
+                           class="w-full minecraft-btn text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-plus-circle mr-2"></i>
+                            添加到服务器列表
+                        </a>
+                    </div>
                 </div>
+            </div>
 
-                <!-- 实时玩家状态卡片 -->
-                <div class="card-hover bg-purple-50 p-6 rounded-xl border border-purple-200">
-                    <h3 class="text-xl font-semibold mb-4">👥 实时玩家状态</h3>
-                    <div id="server-status">
-                        <p class="text-gray-600">正在检查服务器状态...</p>
+            <!-- 服务器状态 -->
+            <div class="mt-12 bg-gray-700 p-6 rounded-xl border border-gray-600">
+                <h3 class="text-xl font-semibold mb-4 text-center">服务器状态</h3>
+                <div id="server-status" class="text-center">
+                    <p class="text-gray-300">正在检查服务器状态...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公告区域 -->
+    <section id="announcements" class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-yellow-400">📢 服务器公告</h2>
+            
+            <div class="bg-gray-800 p-6 rounded-xl border border-yellow-600">
+                <div class="flex items-center mb-4">
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                    <h3 class="text-xl font-semibold">最新公告</h3>
+                    <span class="ml-auto text-gray-400 text-sm">2025年11月15日 18:37</span>
+                </div>
+                
+                <div class="space-y-4 text-gray-200">
+                    <p>欢迎来到我们的Minecraft服务器！以下是服务器信息：</p>
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-400 mb-2">Java版服务器</h4>
+                        <p>地址: <span class="server-address">bffc302bbe83.ofalias.com:64533</span></p>
+                        <p>版本: <span class="text-blue-300">1.21.10</span></p>
+                    </div>
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-400 mb-2">基岩版服务器</h4>
+                        <p>地址: <span class="server-address">bffc302bbe83.ofalias.com:23047</span></p>
+                        <p>版本: <span class="text-purple-300">最新版本</span></p>
+                    </div>
+                    
+                    <p class="mt-4">服务器持续运行中，欢迎大家加入一起游玩！如有问题请联系管理员。</p>
+                </div>
+            </div>
+            
+            <!-- 历史公告 -->
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4 text-gray-300">历史公告</h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <h4 class="font-semibold text-green-400">服务器维护完成</h4>
+                        <p class="text-gray-400 text-sm">2025年11月10日</p>
+                        <p class="text-gray-300 mt-2">服务器已完成维护，现已恢复正常运行。</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <h4 class="font-semibold text-green-400">新版本更新</h4>
+                        <p class="text-gray-400 text-sm">2025年11月5日</p>
+                        <p class="text-gray-300 mt-2">服务器已更新至最新版本，新增多个游戏功能。</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Minecraft服务器状态检查脚本 -->
-        <script>
-        // 检查Minecraft服务器状态
-        async function checkServerStatus() {
-            try {
-                const response = await fetch('https://api.mcsrvstat.com/2/mc.nitaishi.top');
-                const data = await response.json();
-                
-                const statusElement = document.getElementById('server-status');
-                
-                if (data.online) {
-                    statusElement.innerHTML = `
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span class="font-semibold text-green-600">服务器在线</span>
-                        </div>
-                        <p class="text-gray-700">在线玩家: <span class="font-bold">${data.players.online} / ${data.players.max}</span></p>
-                        ${data.players.list ? `
-                            <div class="mt-3">
-                                <p class="text-sm text-gray-600">当前在线:</p>
-                                <div class="flex flex-wrap gap-1 mt-1">
-                                    ${data.players.list.map(player => 
-                                        `<span class="bg-gray-200 px-2 py-1 rounded text-sm">${player}</span>`
-                                    ).join('')}
-                                </div>
-                            </div>
-                        ` : ''}
-                    `;
-                } else {
-                    statusElement.innerHTML = `
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <span class="font-semibold text-red-600">服务器离线</span>
-                        </div>
-                        <p class="text-gray-700">服务器当前不可用</p>
-                    `;
-                }
-            } catch (error) {
-                document.getElementById('server-status').innerHTML = 
-                    '<p class="text-red-600">无法获取服务器状态</p>';
-            }
-        }
-
-        // 页面加载时检查状态
-        checkServerStatus();
-        // 每2分钟自动更新状态
-        setInterval(checkServerStatus, 120000);
-        </script>
     </section>
 
     <!-- 关于区域 -->
-    <section id="about" class="py-20 bg-gray-50">
+    <section id="about" class="py-20 bg-gray-800">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">关于这个网站</h2>
-            <div class="bg-white p-8 rounded-xl shadow-sm">
-                <p class="text-gray-700 mb-4">
-                    你好！欢迎来到我的个人空间。这个网站是我学习Web开发的实践项目，也是我与朋友们在Minecraft世界中冒险的基地。
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">关于我们</h2>
+            <div class="bg-gray-700 p-8 rounded-xl shadow-sm">
+                <p class="text-gray-300 mb-4">
+                    欢迎来到我们的Minecraft服务器！我们致力于为玩家提供一个友好、公平的游戏环境，让大家能够尽情享受Minecraft的乐趣。
                 </p>
-                <p class="text-gray-700">
-                    网站使用现代Web技术构建，采用响应式设计，可以在手机和电脑上完美显示。如果你有任何建议或想交个朋友，欢迎联系我！
+                <p class="text-gray-300 mb-4">
+                    我们的服务器支持Java版和基岩版，无论您使用什么设备，都可以加入我们的世界，与朋友们一起探索、建造和冒险。
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI 聊天区域 -->
-    <section id="ai-chat" class="py-20 bg-gradient-to-r from-purple-50 to-blue-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">🤖 与我的 AI 助手对话</h2>
-            
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <!-- 聊天消息容器 -->
-                <div id="chat-messages" class="h-96 overflow-y-auto mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="text-center text-gray-500">对话将在这里显示...</div>
-                </div>
-                
-                <!-- 输入区域 -->
-                <div class="flex space-x-4">
-                    <input type="text" id="user-input" 
-                           placeholder="输入你的问题..." 
-                           class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button id="send-button" 
-                            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition">
-                        发送
-                    </button>
-                </div>
-                
-                <!-- 状态指示 -->
-                <div id="status" class="mt-2 text-sm text-gray-500">就绪</div>
-                
-                <!-- 说明 -->
-                <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                    <p class="text-sm text-blue-800">
-                        <i class="fas fa-network-wired mr-1"></i>
-                        通过内网穿透连接本地 LM Studio (57c42474b0ea.ofalias.net:57016)
-                    </p>
-                </div>
+                <p class="text-gray-300">
+                    如果您在游戏中遇到任何问题，或者有任何建议，欢迎联系服务器管理员。祝您游戏愉快！
+                </p>
             </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <p>&copy; 2025 nitaishi.top - 我的个人小站</p>
-            <p class="text-gray-400 mt-2">Powered by Vercel</p>
+            <p>&copy; 2025 nitaishi.top - Minecraft服务器</p>
+            <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
         </div>
     </footer>
 
-    <!-- AI 聊天功能脚本 -->
+    <!-- JavaScript -->
     <script>
-    // LM Studio 配置 - 内网穿透版
-    const LM_STUDIO_CONFIG = {
-        baseURL: 'http://57c42474b0ea.ofalias.net:57016/v1',
-        model: "qwen2.5-7b-instruct-1m"
-    };
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
 
-    // DOM 元素
-    const chatMessages = document.getElementById('chat-messages');
-    const userInput = document.getElementById('user-input');
-    const sendButton = document.getElementById('send-button');
-    const statusElement = document.getElementById('status');
-
-    // 添加消息到聊天窗口
-    function addMessage(role, content) {
-        if (chatMessages.innerHTML.includes('对话将在这里显示')) {
-            chatMessages.innerHTML = '';
-        }
-        
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `mb-4 ${role === 'user' ? 'text-right' : 'text-left'}`;
-        
-        const bubble = document.createElement('div');
-        bubble.className = `inline-block max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
-            role === 'user' 
-                ? 'bg-blue-500 text-white rounded-br-none' 
-                : 'bg-gray-200 text-gray-800 rounded-bl-none'
-        }`;
-        bubble.textContent = content;
-        
-        messageDiv.appendChild(bubble);
-        chatMessages.appendChild(messageDiv);
-        
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // 查询 LM Studio
-    async function queryLMStudio(userMessage) {
-        try {
-            statusElement.textContent = 'AI 正在思考...';
-            sendButton.disabled = true;
-            sendButton.textContent = '发送中...';
+        // 服务器状态检查
+        async function checkServerStatus() {
+            const statusElement = document.getElementById('server-status');
             
-            const response = await fetch(`${LM_STUDIO_CONFIG.baseURL}/chat/completions`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    model: LM_STUDIO_CONFIG.model,
-                    messages: [
-                        { role: "system", content: "你是一个有用的助手，请用中文回答。回答要简洁明了。" },
-                        { role: "user", content: userMessage }
-                    ],
-                    temperature: 0.7,
-                    max_tokens: 500,
-                    stream: false
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP错误: ${response.status}`);
-            }
-
-            const data = await response.json();
-            statusElement.textContent = '就绪';
-            
-            if (data.choices && data.choices[0] && data.choices[0].message) {
-                return data.choices[0].message.content;
-            } else {
-                throw new Error('API返回数据格式异常');
-            }
-        } catch (error) {
-            console.error('调用 AI 失败:', error);
-            statusElement.textContent = `错误: ${error.message}`;
-            return `抱歉，AI助手暂时无法连接。错误信息: ${error.message}`;
-        } finally {
-            sendButton.disabled = false;
-            sendButton.textContent = '发送';
+            // 模拟服务器状态检查
+            // 在实际应用中，这里应该调用真实的API
+            setTimeout(() => {
+                statusElement.innerHTML = `
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-400 mb-2">Java版</h4>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-green-400">在线</span>
+                            </div>
+                            <p class="text-gray-300 mt-2">0/20 玩家在线</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-400 mb-2">基岩版</h4>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-green-400">在线</span>
+                            </div>
+                            <p class="text-gray-300 mt-2">0/20 玩家在线</p>
+                        </div>
+                    </div>
+                `;
+            }, 1000);
         }
-    }
 
-    // 发送消息
-    async function sendMessage() {
-        const message = userInput.value.trim();
-        if (!message) return;
-
-        userInput.value = '';
-        addMessage('user', message);
-        
-        const aiResponse = await queryLMStudio(message);
-        addMessage('assistant', aiResponse);
-    }
-
-    // 事件监听
-    sendButton.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-
-    // 连接测试
-    async function testConnection() {
-        try {
-            statusElement.textContent = '测试LM Studio连接...';
-            const response = await fetch(`${LM_STUDIO_CONFIG.baseURL}/models`);
-            
-            if (response.ok) {
-                const data = await response.json();
-                statusElement.textContent = `已连接到LM Studio`;
-                
-                setTimeout(() => {
-                    if (chatMessages.innerHTML.includes('对话将在这里显示')) {
-                        addMessage('assistant', '你好！AI助手已就绪，有什么我可以帮你的吗？');
-                    }
-                }, 500);
-            } else {
-                statusElement.textContent = `连接测试失败: ${response.status}`;
-            }
-        } catch (error) {
-            statusElement.textContent = '无法连接到LM Studio';
-            console.error('连接测试失败:', error);
-        }
-    }
-
-    // 页面加载时测试连接
-    setTimeout(testConnection, 1000);
+        // 页面加载时检查服务器状态
+        checkServerStatus();
     </script>
 </body>
 </html>
