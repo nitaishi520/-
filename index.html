@@ -62,7 +62,7 @@
                     <a href="#home" class="text-gray-300 hover:text-green-400 transition">首页</a>
                     <a href="#server" class="text-gray-300 hover:text-green-400 transition">服务器</a>
                     <a href="#announcements" class="text-gray-300 hover:text-green-400 transition">公告</a>
-                    <a href="#help" class="text-gray-300 hover:text-green-400 transition">帮助</a>
+                    <a href="help.html" class="text-gray-300 hover:text-green-400 transition">帮助中心</a>
                     <a href="#about" class="text-gray-300 hover:text-green-400 transition">关于</a>
                 </div>
                 <div class="md:hidden">
@@ -76,7 +76,7 @@
                 <a href="#home" class="block py-2 text-gray-300 hover:text-green-400">首页</a>
                 <a href="#server" class="block py-2 text-gray-300 hover:text-green-400">服务器</a>
                 <a href="#announcements" class="block py-2 text-gray-300 hover:text-green-400">公告</a>
-                <a href="#help" class="block py-2 text-gray-300 hover:text-green-400">帮助</a>
+                <a href="help.html" class="block py-2 text-gray-300 hover:text-green-400">帮助中心</a>
                 <a href="#about" class="block py-2 text-gray-300 hover:text-green-400">关于</a>
             </div>
         </div>
@@ -87,9 +87,14 @@
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h1 class="text-5xl font-bold mb-6">欢迎来到 Minecraft 服务器</h1>
             <p class="text-xl mb-8 opacity-90">与朋友们一起探索、建造和冒险的乐园</p>
-            <a href="#server" class="minecraft-btn text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg">
-                立即加入 <i class="fas fa-gamepad ml-2"></i>
-            </a>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#server" class="minecraft-btn text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg text-center">
+                    立即加入 <i class="fas fa-gamepad ml-2"></i>
+                </a>
+                <a href="help.html" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg transition text-center">
+                    获取帮助 <i class="fas fa-question-circle ml-2"></i>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -158,12 +163,16 @@
                 </div>
             </div>
 
-            <!-- 服务器状态 -->
-            <div class="mt-12 bg-gray-700 p-6 rounded-xl border border-gray-600">
-                <h3 class="text-xl font-semibold mb-4 text-center">服务器状态</h3>
-                <div id="server-status" class="text-center">
-                    <p class="text-gray-300">正在检查服务器状态...</p>
+            <!-- 快速帮助提示 -->
+            <div class="mt-12 bg-gray-700 p-6 rounded-xl border border-green-600">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-question-circle text-green-400 text-2xl mr-3"></i>
+                    <h3 class="text-xl font-semibold">需要帮助？</h3>
                 </div>
+                <p class="text-gray-300 mb-4">如果您在连接服务器或游戏中遇到问题，请查看我们的帮助中心。</p>
+                <a href="help.html" class="inline-flex items-center text-green-400 hover:text-green-300 font-semibold">
+                    前往帮助中心 <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -254,7 +263,7 @@
                                 <i class="fas fa-question-circle text-purple-400 mt-1 mr-3"></i>
                                 <div>
                                     <h4 class="font-semibold text-purple-400">获取帮助</h4>
-                                    <p class="text-gray-300 mt-1">如果您有任何疑问，请前往<a href="#help" class="text-green-400 hover:underline">帮助中心</a>获取更多信息和支持。</p>
+                                    <p class="text-gray-300 mt-1">如果您有任何疑问，请前往<a href="help.html" class="text-green-400 hover:underline">帮助中心</a>获取更多信息和支持。</p>
                                 </div>
                             </div>
                         </div>
@@ -294,75 +303,51 @@
         </div>
     </section>
 
-    <!-- 帮助区域 -->
-    <section id="help" class="py-20 bg-gray-800">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">❓ 帮助中心</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-700 p-6 rounded-xl border border-gray-600">
-                    <h3 class="text-xl font-semibold mb-4 text-blue-400">常见问题</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-semibold text-green-400">如何加入服务器？</h4>
-                            <p class="text-gray-300 mt-1">在Minecraft中添加服务器地址：<span class="server-address">bffc302bbe83.ofalias.com</span> 和对应端口即可。</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-green-400">服务器支持哪些版本？</h4>
-                            <p class="text-gray-300 mt-1">Java版支持1.21.10，基岩版支持最新版本。</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-green-400">有哪些便捷指令？</h4>
-                            <p class="text-gray-300 mt-1">服务器提供快速回家和传送指令，具体指令请在游戏中查看。</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-700 p-6 rounded-xl border border-gray-600">
-                    <h3 class="text-xl font-semibold mb-4 text-blue-400">联系我们</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-semibold text-green-400">邮箱联系</h4>
-                            <p class="text-gray-300 mt-1">如有问题或建议，请发送邮件至：<span class="text-green-400">3653615194@qq.com</span></p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-green-400">反馈内容</h4>
-                            <p class="text-gray-300 mt-1">请详细描述您遇到的问题或建议，我们会尽快回复。</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-green-400">响应时间</h4>
-                            <p class="text-gray-300 mt-1">我们会在1-3个工作日内回复您的邮件。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 关于区域 -->
-    <section id="about" class="py-20 bg-gray-900">
+    <section id="about" class="py-20 bg-gray-800">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-400">关于我们</h2>
-            <div class="bg-gray-800 p-8 rounded-xl shadow-sm">
+            <div class="bg-gray-700 p-8 rounded-xl shadow-sm">
                 <p class="text-gray-300 mb-4">
                     欢迎来到我们的Minecraft服务器！我们致力于为玩家提供一个友好、公平的游戏环境，让大家能够尽情享受Minecraft的乐趣。
                 </p>
                 <p class="text-gray-300 mb-4">
                     我们的服务器支持Java版和基岩版，无论您使用什么设备，都可以加入我们的世界，与朋友们一起探索、建造和冒险。
                 </p>
-                <p class="text-gray-300">
+                <p class="text-gray-300 mb-6">
                     如果您在游戏中遇到任何问题，或者有任何建议，欢迎通过邮箱 <span class="text-green-400">3653615194@qq.com</span> 联系服务器管理员。祝您游戏愉快！
                 </p>
+                
+                <div class="mt-8 pt-6 border-t border-gray-600">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-400">更多资源</h3>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="help.html" class="flex-1 bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
+                            <i class="fas fa-question-circle text-2xl mb-2 text-green-400"></i>
+                            <h4 class="font-semibold">帮助中心</h4>
+                            <p class="text-sm text-gray-300 mt-1">查看详细指南和常见问题</p>
+                        </a>
+                        <a href="#server" class="flex-1 bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
+                            <i class="fas fa-server text-2xl mb-2 text-blue-400"></i>
+                            <h4 class="font-semibold">服务器状态</h4>
+                            <p class="text-sm text-gray-300 mt-1">查看服务器在线状态</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-800 text-gray-400 py-8 border-t border-gray-700">
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <p>&copy; 2025 nitaishi.top - Minecraft服务器</p>
             <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
             <p class="mt-2">联系邮箱: 3653615194@qq.com</p>
+            <div class="mt-4">
+                <a href="help.html" class="text-green-400 hover:text-green-300 mx-2">帮助中心</a>
+                <a href="#server" class="text-green-400 hover:text-green-300 mx-2">服务器信息</a>
+                <a href="#announcements" class="text-green-400 hover:text-green-300 mx-2">公告</a>
+            </div>
         </div>
     </footer>
 
@@ -374,37 +359,26 @@
             menu.classList.toggle('hidden');
         });
 
-        // 服务器状态检查
-        async function checkServerStatus() {
-            const statusElement = document.getElementById('server-status');
-            
-            // 模拟服务器状态检查
-            setTimeout(() => {
-                statusElement.innerHTML = `
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-semibold text-green-400 mb-2">Java版</h4>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                <span class="text-green-400">在线</span>
-                            </div>
-                            <p class="text-gray-300 mt-2">0/20 玩家在线</p>
-                        </div>
-                        <div class="bg-gray-800 p-4 rounded-lg">
-                            <h4 class="font-semibold text-blue-400 mb-2">基岩版</h4>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                <span class="text-green-400">在线</span>
-                            </div>
-                            <p class="text-gray-300 mt-2">0/20 玩家在线</p>
-                        </div>
-                    </div>
-                `;
-            }, 1000);
-        }
-
-        // 页面加载时检查服务器状态
-        checkServerStatus();
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新URL哈希（可选）
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
     </script>
 </body>
 </html>
