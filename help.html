@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帮助中心 - Minecraft服务器 - nitaishi.top</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .minecraft-gradient {
+            background: linear-gradient(-45deg, #3a7d34, #306230, #215732);
+            background-size: 400% 400%;
+            animation: gradient-bg 10s ease infinite;
+        }
+        @keyframes gradient-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .server-address {
+            font-family: 'Courier New', monospace;
+            background-color: #1f2937;
+            color: #10b981;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #374151;
+        }
+        .minecraft-btn {
+            background-color: #3a7d34;
+            transition: all 0.3s ease;
+        }
+        .minecraft-btn:hover {
+            background-color: #306230;
+            transform: translateY(-2px);
+        }
+        .help-category {
+            border-left: 4px solid #3a7d34;
+            transition: all 0.3s ease;
+        }
+        .help-category:hover {
+            border-left-color: #10b981;
+        }
+        .faq-item {
+            border-bottom: 1px solid #374151;
+            transition: all 0.3s ease;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- 导航栏 -->
+    <nav class="bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="font-bold text-xl text-green-500 flex items-center">
+                    <i class="fas fa-cube mr-2"></i> 
+                    <a href="index.html">nitaishi.top</a>
+                    <span class="text-gray-400 ml-2 text-lg">/ 帮助中心</span>
+                </div>
+                <div class="space-x-6 hidden md:flex">
+                    <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
+                    <a href="#contact" class="text-gray-300 hover:text-green-400 transition">联系我们</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-green-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
+                <a href="#contact" class="block py-2 text-gray-300 hover:text-green-400">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页英雄区域 -->
+    <section class="minecraft-gradient text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Minecraft服务器帮助中心</h1>
+            <p class="text-xl mb-8 opacity-90">在这里找到所有问题的答案</p>
+            
+            <!-- 搜索框 -->
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="搜索问题或关键词..." 
+                           class="w-full px-6 py-4 rounded-lg bg-gray-800 bg-opacity-50 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button class="absolute right-3 top-3 text-gray-400 hover:text-green-400">
+                        <i class="fas fa-search text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速帮助区域 -->
+    <section class="py-12 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8 text-green-400">🚀 快速帮助</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="#joining" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                    <div class="text-4xl text-green-400 mb-4">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">加入服务器</h3>
+                    <p class="text-gray-400">如何连接和进入服务器</p>
+                </a>
+                
+                <a href="#rules" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                    <div class="text-4xl text-yellow-400 mb-4">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">服务器规则</h3>
+                    <p class="text-gray-400">了解服务器规则和指南</p>
+                </a>
+                
+                <a href="#commands" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                    <div class="text-4xl text-blue-400 mb-4">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">指令指南</h3>
+                    <p class="text-gray-400">学习服务器可用指令</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 帮助内容区域 -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- 加入服务器 -->
+            <div id="joining" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-green-400 border-b border-gray-700 pb-2">
+                    <i class="fas fa-door-open mr-3"></i>加入服务器
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-400">Java版加入方法</h3>
+                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                            <li>打开Minecraft Java版</li>
+                            <li>点击"多人游戏"</li>
+                            <li>点击"添加服务器"</li>
+                            <li>在服务器地址中输入：<span class="server-address">bffc302bbe83.ofalias.com</span></li>
+                            <li>在端口中输入：<span class="server-address">64533</span></li>
+                            <li>点击"完成"并选择服务器加入</li>
+                        </ol>
+                        <div class="mt-6">
+                            <a href="minecraft://?addExternalServer=bffc302bbe83.ofalias.com:64533" 
+                               class="minecraft-btn text-white py-3 px-6 rounded-lg font-semibold transition inline-flex items-center">
+                                <i class="fas fa-plus-circle mr-2"></i>
+                                一键添加Java版服务器
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-400">基岩版加入方法</h3>
+                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                            <li>打开Minecraft基岩版</li>
+                            <li>点击"游戏"并选择"服务器"标签</li>
+                            <li>向下滚动并点击"添加服务器"</li>
+                            <li>在服务器地址中输入：<span class="server-address">bffc302bbe83.ofalias.com</span></li>
+                            <li>在端口中输入：<span class="server-address">23047</span></li>
+                            <li>点击"保存"并选择服务器加入</li>
+                        </ol>
+                        <div class="mt-6">
+                            <a href="minecraft://?addExternalServer=bffc302bbe83.ofalias.com:23047" 
+                               class="minecraft-btn text-white py-3 px-6 rounded-lg font-semibold transition inline-flex items-center">
+                                <i class="fas fa-plus-circle mr-2"></i>
+                                一键添加基岩版服务器
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 服务器规则 -->
+            <div id="rules" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-yellow-400 border-b border-gray-700 pb-2">
+                    <i class="fas fa-gavel mr-3"></i>服务器规则
+                </h2>
+                
+                <div class="space-y-6">
+                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-alt text-green-400 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-green-400">公平游戏</h3>
+                                <p class="text-gray-300">本服务器已部署反矿透系统，请各位玩家自觉遵守游戏规则，共同维护公平的游戏环境。任何形式的作弊行为都将受到处罚。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                        <div class="flex items-start">
+                            <i class="fas fa-ban text-red-400 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-red-400">禁止外挂</h3>
+                                <p class="text-gray-300">我们强烈不建议也不允许使用任何形式的外挂程序。请勿使用、宣传或分享外挂相关信息，一经发现将严肃处理。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                        <div class="flex items-start">
+                            <i class="fas fa-heart text-red-400 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-yellow-400">资源管理</h3>
+                                <p class="text-gray-300">本服务器中，经验值和生命值是非常重要的资源。请合理利用，避免不必要的浪费。特别是经验值，建议尽可能多地收集和保存。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-category bg-gray-800 p-6 rounded-xl">
+                        <div class="flex items-start">
+                            <i class="fas fa-users text-blue-400 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-blue-400">玩家行为</h3>
+                                <p class="text-gray-300">请尊重其他玩家，不使用侮辱性语言，不进行恶意破坏行为。共同营造友好的游戏社区环境。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 指令指南 -->
+            <div id="commands" class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-blue-400 border-b border-gray-700 pb-2">
+                    <i class="fas fa-terminal mr-3"></i>指令指南
+                </h2>
+                
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <p class="text-gray-300 mb-6">以下是一些常用的服务器指令，可以帮助您更好地享受游戏：</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-gray-700">
+                                    <th class="py-3 px-4 text-green-400">指令</th>
+                                    <th class="py-3 px-4 text-green-400">描述</th>
+                                    <th class="py-3 px-4 text-green-400">用法</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-4 font-mono">/home</td>
+                                    <td class="py-3 px-4 text-gray-300">快速回到您的家</td>
+                                    <td class="py-3 px-4 font-mono text-gray-400">/home</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-4 font-mono">/sethome</td>
+                                    <td class="py-3 px-4 text-gray-300">设置您家的位置</td>
+                                    <td class="py-3 px-4 font-mono text-gray-400">/sethome</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-4 font-mono">/tpa [玩家]</td>
+                                    <td class="py-3 px-4 text-gray-300">请求传送到指定玩家</td>
+                                    <td class="py-3 px-4 font-mono text-gray-400">/tpa Steve</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-4 font-mono">/tpaccept</td>
+                                    <td class="py-3 px-4 text-gray-300">接受传送请求</td>
+                                    <td class="py-3 px-4 font-mono text-gray-400">/tpaccept</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-3 px-4 font-mono">/spawn</td>
+                                    <td class="py-3 px-4 text-gray-300">返回出生点</td>
+                                    <td class="py-3 px-4 font-mono text-gray-400">/spawn</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-mono">/help</td>
+                                    <td class="py-3 px-4 text-gray-300">查看服务器帮助</td>
+                                    <td class="py-3 px-4 font-mono text-gray-400">/help</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 常见问题 -->
+            <div id="faq">
+                <h2 class="text-3xl font-bold mb-8 text-purple-400 border-b border-gray-700 pb-2">
+                    <i class="fas fa-question-circle mr-3"></i>常见问题
+                </h2>
+                
+                <div class="space-y-4">
+                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                        <div class="faq-question flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-200">服务器支持哪些Minecraft版本？</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-300">
+                            <p>Java版服务器支持1.21.10版本，基岩版服务器支持最新版本。请确保您的游戏客户端版本与服务器匹配。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                        <div class="faq-question flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-200">服务器有白名单吗？如何申请？</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-300">
+                            <p>本服务器目前没有白名单限制，任何玩家都可以直接加入。如果未来启用白名单系统，我们会在官网和游戏内公告。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                        <div class="faq-question flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-200">服务器会重置地图吗？</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-300">
+                            <p>我们目前没有重置地图的计划。如果未来需要重置，我们会提前通知所有玩家，并尽可能提供存档下载。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                        <div class="faq-question flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-200">如何举报违规玩家？</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-300">
+                            <p>如果您发现玩家有违规行为，请通过邮箱 <span class="text-green-400">3653615194@qq.com</span> 联系管理员，提供违规玩家的ID、违规行为和证据（截图或视频）。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                        <div class="faq-question flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-200">服务器有资源世界或副世界吗？</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-300">
+                            <p>是的，服务器提供资源世界供玩家采集资源。资源世界会定期重置以确保资源充足。具体进入方式请在游戏中查看相关指令。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-16 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">📧 联系我们</h2>
+            
+            <div class="bg-gray-700 p-8 rounded-xl">
+                <div class="text-center mb-8">
+                    <i class="fas fa-envelope text-5xl text-green-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2">需要更多帮助？</h3>
+                    <p class="text-gray-300">如果您的问题在这里没有找到答案，欢迎通过以下方式联系我们</p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center justify-center">
+                        <i class="fas fa-at text-green-400 text-2xl mr-4"></i>
+                        <div>
+                            <h4 class="text-xl font-semibold text-green-400">邮箱联系</h4>
+                            <p class="text-gray-300">3653615194@qq.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <p class="text-gray-300 mb-4">请详细描述您遇到的问题，包括：</p>
+                        <ul class="list-disc list-inside text-gray-400 text-left max-w-md mx-auto">
+                            <li>您的游戏ID</li>
+                            <li>问题发生的具体时间</li>
+                            <li>问题的详细描述</li>
+                            <li>相关截图或视频（如果有）</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <a href="mailto:3653615194@qq.com" class="minecraft-btn text-white py-3 px-8 rounded-lg font-semibold inline-flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            发送邮件
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2025 nitaishi.top - Minecraft服务器帮助中心</p>
+            <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
+            <p class="mt-2">
+                <a href="index.html" class="text-green-400 hover:underline">返回主页</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ展开/收起功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+                
+                const icon = this.querySelector('i');
+                if (faqItem.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+
+        // 搜索功能
+        document.getElementById('search-input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            if (searchTerm.length < 2) return;
+            
+            // 这里可以添加实际的搜索逻辑
+            console.log('搜索:', searchTerm);
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
