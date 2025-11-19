@@ -88,6 +88,7 @@
                     <a href="#server" class="text-gray-300 hover:text-green-400 transition">服务器</a>
                     <a href="#announcements" class="text-gray-300 hover:text-green-400 transition">公告</a>
                     <a href="help.html" class="text-gray-300 hover:text-green-400 transition">帮助中心</a>
+                    <a href="downloads.html" class="text-gray-300 hover:text-green-400 transition">启动器下载</a>
                     <a href="#about" class="text-gray-300 hover:text-green-400 transition">关于</a>
                 </div>
                 <div class="md:hidden">
@@ -102,6 +103,7 @@
                 <a href="#server" class="block py-2 text-gray-300 hover:text-green-400">服务器</a>
                 <a href="#announcements" class="block py-2 text-gray-300 hover:text-green-400">公告</a>
                 <a href="help.html" class="block py-2 text-gray-300 hover:text-green-400">帮助中心</a>
+                <a href="downloads.html" class="block py-2 text-gray-300 hover:text-green-400">启动器下载</a>
                 <a href="#about" class="block py-2 text-gray-300 hover:text-green-400">关于</a>
             </div>
         </div>
@@ -118,6 +120,9 @@
                 </a>
                 <a href="help.html" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg transition text-center">
                     获取帮助 <i class="fas fa-question-circle ml-2"></i>
+                </a>
+                <a href="downloads.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg transition text-center">
+                    下载启动器 <i class="fas fa-download ml-2"></i>
                 </a>
             </div>
         </div>
@@ -195,9 +200,14 @@
                     <h3 class="text-xl font-semibold">需要帮助？</h3>
                 </div>
                 <p class="text-gray-300 mb-4">如果您在连接服务器或游戏中遇到问题，请查看我们的帮助中心。</p>
-                <a href="help.html" class="inline-flex items-center text-green-400 hover:text-green-300 font-semibold">
-                    前往帮助中心 <i class="fas fa-arrow-right ml-2"></i>
-                </a>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="help.html" class="inline-flex items-center text-green-400 hover:text-green-300 font-semibold">
+                        前往帮助中心 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="downloads.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold">
+                        下载启动器 <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -213,7 +223,7 @@
                     <div class="flex items-center mb-4">
                         <i class="fas fa-gift text-yellow-400 text-2xl mr-3"></i>
                         <h3 class="text-xl font-semibold text-white">🎁 数据恢复补偿方案 - 具体安排</h3>
-                        <span class="ml-auto text-gray-300 text-sm">2025年11月18日</span>
+                        <span class="ml-auto text-gray-300 text-sm">2025年11月19日</span>
                     </div>
                     
                     <div class="space-y-4 text-gray-200">
@@ -277,7 +287,7 @@
                         </div>
 
                         <div class="text-center mt-4 pt-4 border-t border-gray-600">
-                            <p class="text-gray-300">请相关玩家联系管理员领取补偿物品</p>
+                            <p class="text-gray-300">请相关玩家在11月22日联系管理员领取补偿物品</p>
                             <p class="text-gray-400 text-sm mt-2">感谢大家的理解与支持！</p>
                         </div>
                     </div>
@@ -390,6 +400,16 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="announcement-item bg-gray-700 p-4 rounded-lg">
+                            <div class="flex items-start">
+                                <i class="fas fa-download text-blue-400 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-blue-400">启动器下载</h4>
+                                    <p class="text-gray-300 mt-1">需要启动器？请访问<a href="downloads.html" class="text-green-400 hover:underline">启动器下载页面</a>获取手机和电脑版启动器。</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -413,14 +433,19 @@
                 
                 <div class="mt-8 pt-6 border-t border-gray-600">
                     <h3 class="text-xl font-semibold mb-4 text-blue-400">更多资源</h3>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="help.html" class="flex-1 bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <a href="help.html" class="bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
                             <i class="fas fa-question-circle text-2xl mb-2 text-green-400"></i>
                             <h4 class="font-semibold">帮助中心</h4>
                             <p class="text-sm text-gray-300 mt-1">查看详细指南和常见问题</p>
                         </a>
-                        <a href="#server" class="flex-1 bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
-                            <i class="fas fa-server text-2xl mb-2 text-blue-400"></i>
+                        <a href="downloads.html" class="bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
+                            <i class="fas fa-download text-2xl mb-2 text-blue-400"></i>
+                            <h4 class="font-semibold">启动器下载</h4>
+                            <p class="text-sm text-gray-300 mt-1">手机和电脑版启动器</p>
+                        </a>
+                        <a href="#server" class="bg-gray-600 hover:bg-gray-500 p-4 rounded-lg text-center transition">
+                            <i class="fas fa-server text-2xl mb-2 text-purple-400"></i>
                             <h4 class="font-semibold">服务器状态</h4>
                             <p class="text-sm text-gray-300 mt-1">查看服务器在线状态</p>
                         </a>
@@ -438,6 +463,7 @@
             <p class="mt-2">联系邮箱: 3653615194@qq.com</p>
             <div class="mt-4">
                 <a href="help.html" class="text-green-400 hover:text-green-300 mx-2">帮助中心</a>
+                <a href="downloads.html" class="text-blue-400 hover:text-blue-300 mx-2">启动器下载</a>
                 <a href="#server" class="text-green-400 hover:text-green-300 mx-2">服务器信息</a>
                 <a href="#announcements" class="text-green-400 hover:text-green-300 mx-2">公告</a>
             </div>
