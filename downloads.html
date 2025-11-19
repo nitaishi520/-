@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启动器下载 - Minecraft服务器 - nitaishi.top</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .minecraft-gradient {
+            background: linear-gradient(-45deg, #3a7d34, #306230, #215732);
+            background-size: 400% 400%;
+            animation: gradient-bg 10s ease infinite;
+        }
+        @keyframes gradient-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .download-btn {
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- 导航栏 -->
+    <nav class="bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="font-bold text-xl text-green-500 flex items-center">
+                    <i class="fas fa-cube mr-2"></i> 
+                    <a href="index.html">nitaishi.top</a>
+                    <span class="text-gray-400 ml-2 text-lg">/ 启动器下载</span>
+                </div>
+                <div class="space-x-6 hidden md:flex">
+                    <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
+                    <a href="#mobile" class="text-gray-300 hover:text-green-400 transition">手机启动器</a>
+                    <a href="#pc" class="text-gray-300 hover:text-green-400 transition">电脑启动器</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-green-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
+                <a href="#mobile" class="block py-2 text-gray-300 hover:text-green-400">手机启动器</a>
+                <a href="#pc" class="block py-2 text-gray-300 hover:text-green-400">电脑启动器</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页英雄区域 -->
+    <section class="minecraft-gradient text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Minecraft启动器下载</h1>
+            <p class="text-xl mb-8">选择适合您设备的启动器，轻松加入我们的服务器</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#mobile" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                    <i class="fas fa-mobile-alt mr-2"></i>手机启动器
+                </a>
+                <a href="#pc" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                    <i class="fas fa-desktop mr-2"></i>电脑启动器
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 手机启动器下载区域 -->
+    <section id="mobile" class="py-16 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">
+                <i class="fas fa-mobile-alt mr-3"></i>手机版启动器
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- HMCL-PE -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-rocket text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-green-400">HMCL-PE</h3>
+                        <p class="text-gray-400 text-sm">Hello Minecraft Launcher</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">平台：</span>
+                            <span class="text-green-400">Android</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">版本：</span>
+                            <span class="text-blue-400">v3.6.0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">大小：</span>
+                            <span class="text-yellow-400">15.2 MB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="downloads/hmcl-pe.apk" class="w-full download-btn bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            下载 HMCL-PE
+                        </a>
+                        <button onclick="showInstructions('hmcl')" class="w-full bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded transition">
+                            <i class="fas fa-info-circle mr-2"></i>使用教程
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PCL2 手机版 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bolt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-blue-400">PCL2 手机版</h3>
+                        <p class="text-gray-400 text-sm">Pixel Client Launcher</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">平台：</span>
+                            <span class="text-green-400">Android</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">版本：</span>
+                            <span class="text-blue-400">v2.5.1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">大小：</span>
+                            <span class="text-yellow-400">12.8 MB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="downloads/pcl2-mobile.apk" class="w-full download-btn bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            下载 PCL2
+                        </a>
+                        <button onclick="showInstructions('pcl')" class="w-full bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded transition">
+                            <i class="fas fa-info-circle mr-2"></i>使用教程
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FCL -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-purple-400">FCL</h3>
+                        <p class="text-gray-400 text-sm">Fancy Client Launcher</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">平台：</span>
+                            <span class="text-green-400">Android</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">版本：</span>
+                            <span class="text-blue-400">v1.8.2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">大小：</span>
+                            <span class="text-yellow-400">18.5 MB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="downloads/fcl.apk" class="w-full download-btn bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            下载 FCL
+                        </a>
+                        <button onclick="showInstructions('fcl')" class="w-full bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded transition">
+                            <i class="fas fa-info-circle mr-2"></i>使用教程
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 电脑启动器下载区域 -->
+    <section id="pc" class="py-16 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">
+                <i class="fas fa-desktop mr-3"></i>电脑版启动器
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- HMCL 电脑版 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-laptop text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-orange-400">HMCL 电脑版</h3>
+                        <p class="text-gray-400 text-sm">功能丰富的Java版启动器</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">平台：</span>
+                            <span class="text-green-400">Windows/Mac/Linux</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">版本：</span>
+                            <span class="text-blue-400">v3.5.6</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">大小：</span>
+                            <span class="text-yellow-400">25.3 MB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="downloads/hmcl-pc.exe" class="w-full download-btn bg-orange-600 hover:bg-orange-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            下载 HMCL (Windows)
+                        </a>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="downloads/hmcl-pc.dmg" class="download-btn bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded text-sm text-center transition">
+                                Mac 版本
+                            </a>
+                            <a href="downloads/hmcl-pc.jar" class="download-btn bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded text-sm text-center transition">
+                                Linux 版本
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PCL2 电脑版 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-desktop text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-indigo-400">PCL2 电脑版</h3>
+                        <p class="text-gray-400 text-sm">轻量快速的启动器</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">平台：</span>
+                            <span class="text-green-400">Windows</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">版本：</span>
+                            <span class="text-blue-400">v2.2.9</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">大小：</span>
+                            <span class="text-yellow-400">8.7 MB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="downloads/pcl2-pc.exe" class="w-full download-btn bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            下载 PCL2 (Windows)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用教程区域 -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-yellow-400">
+                <i class="fas fa-book mr-3"></i>使用教程
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-700 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-green-400 mb-4">安装步骤</h3>
+                    <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                        <li>下载适合您设备的启动器文件</li>
+                        <li>手机用户需要开启"允许安装未知来源应用"</li>
+                        <li>安装启动器并打开</li>
+                        <li>登录您的Minecraft账号</li>
+                        <li>下载对应的游戏版本</li>
+                        <li>添加服务器地址：<code class="bg-gray-800 px-2 py-1 rounded">bffc302bbe83.ofalias.com</code></li>
+                    </ol>
+                </div>
+                
+                <div class="bg-gray-700 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-4">常见问题</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-yellow-400">安装失败怎么办？</h4>
+                            <p class="text-gray-300">请检查设备存储空间，并确保已开启未知来源安装权限。</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-yellow-400">无法登录账号？</h4>
+                            <p class="text-gray-300">请确认使用的是正版账号，或检查网络连接。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2025 nitaishi.top - Minecraft服务器启动器下载</p>
+            <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
+            <p class="mt-2">
+                <a href="index.html" class="text-green-400 hover:underline">返回主页</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 使用教程模态框 -->
+    <div id="instructions-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="modal-title" class="text-xl font-semibold text-green-400"></h3>
+                    <button onclick="closeInstructions()" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="text-gray-300 space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // 使用教程模态框
+        function showInstructions(launcher) {
+            const modal = document.getElementById('instructions-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            const instructions = {
+                hmcl: {
+                    title: 'HMCL-PE 使用教程',
+                    content: `
+                        <h4 class="font-semibold text-yellow-400 mb-2">安装步骤：</h4>
+                        <ol class="list-decimal list-inside space-y-2 mb-4">
+                            <li>下载HMCL-PE安装包</li>
+                            <li>在手机设置中开启"允许安装未知来源应用"</li>
+                            <li>安装并打开HMCL-PE</li>
+                            <li>点击"登录"输入Minecraft账号</li>
+                            <li>在"版本"页面下载1.21.10版本</li>
+                            <li>启动游戏并在多人游戏中添加服务器</li>
+                        </ol>
+                        <h4 class="font-semibold text-yellow-400 mb-2">服务器地址：</h4>
+                        <p class="bg-gray-700 p-2 rounded font-mono">bffc302bbe83.ofalias.com:64533</p>
+                    `
+                },
+                pcl: {
+                    title: 'PCL2 使用教程',
+                    content: `
+                        <h4 class="font-semibold text-yellow-400 mb-2">安装步骤：</h4>
+                        <ol class="list-decimal list-inside space-y-2 mb-4">
+                            <li>下载PCL2安装包</li>
+                            <li>安装时允许所有权限请求</li>
+                            <li>打开PCL2并登录账号</li>
+                            <li>选择基岩版1.21.10版本下载</li>
+                            <li>在游戏内添加服务器地址</li>
+                        </ol>
+                        <h4 class="font-semibold text-yellow-400 mb-2">注意事项：</h4>
+                        <p>PCL2启动器占用内存较小，适合配置较低的设备。</p>
+                    `
+                },
+                fcl: {
+                    title: 'FCL 使用教程',
+                    content: `
+                        <h4 class="font-semibold text-yellow-400 mb-2">安装步骤：</h4>
+                        <ol class="list-decimal list-inside space-y-2 mb-4">
+                            <li>下载FCL安装包</li>
+                            <li>安装并授予必要权限</li>
+                            <li>打开FCL启动器</li>
+                            <li>配置游戏版本和参数</li>
+                            <li>登录账号并启动游戏</li>
+                        </ol>
+                        <h4 class="font-semibold text-yellow-400 mb-2">特色功能：</h4>
+                        <p>FCL支持自定义游戏参数和模组管理，适合高级玩家使用。</p>
+                    `
+                }
+            };
+            
+            title.textContent = instructions[launcher].title;
+            content.innerHTML = instructions[launcher].content;
+            modal.classList.remove('hidden');
+        }
+        
+        function closeInstructions() {
+            document.getElementById('instructions-modal').classList.add('hidden');
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
