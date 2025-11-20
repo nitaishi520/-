@@ -73,6 +73,64 @@
         .player-creeper { border-left-color: #22c55e; }
         .player-woainitaishi { border-left-color: #3b82f6; }
         .player-pojoy { border-left-color: #a855f7; }
+        
+        /* 弹窗样式 */
+        .announcement-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: #1f2937;
+            margin: 2rem auto;
+            padding: 0;
+            border-radius: 12px;
+            max-width: 800px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-body {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
@@ -126,6 +184,14 @@
                 <a href="downloads.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold inline-block shadow-lg transition text-center">
                     资源下载 <i class="fas fa-download ml-2"></i>
                 </a>
+            </div>
+            
+            <!-- 公告提示按钮 -->
+            <div class="mt-8">
+                <button onclick="openAnnouncementModal()" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-semibold transition inline-flex items-center animate-pulse">
+                    <i class="fas fa-bullhorn mr-2"></i>
+                    查看重要公告
+                </button>
             </div>
         </div>
     </section>
@@ -217,157 +283,23 @@
         </div>
     </section>
 
-    <!-- 公告区域 -->
+    <!-- 公告区域（简化版） -->
     <section id="announcements" class="py-20 bg-gray-900">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-yellow-400">📢 服务器公告</h2>
             
             <div class="space-y-6">
-                <!-- 补偿公告 -->
-                <div class="bg-gradient-to-r from-purple-900 to-blue-900 p-6 rounded-xl border-2 border-yellow-500">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-gift text-yellow-400 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-semibold text-white">🎁 数据恢复补偿方案 - 具体安排</h3>
-                        <span class="ml-auto text-gray-300 text-sm">2025年11月18日</span>
-                    </div>
-                    
-                    <div class="space-y-4 text-gray-200">
-                        <!-- 通用补偿 -->
-                        <div class="bg-green-900 bg-opacity-50 p-4 rounded-lg">
-                            <h4 class="font-semibold text-green-300 mb-3 flex items-center">
-                                <i class="fas fa-users mr-2"></i>
-                                全体玩家补偿
-                            </h4>
-                            <ul class="list-disc list-inside space-y-2 ml-4">
-                                <li><span class="text-yellow-300">飞行权限</span>：下周六全天所有玩家可获得飞行权限</li>
-                                <li><span class="text-yellow-300">经验补偿</span>：所有老玩家（非新人）获得10级经验</li>
-                            </ul>
-                        </div>
-
-                        <!-- 个人补偿 -->
-                        <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
-                            <h4 class="font-semibold text-blue-300 mb-3 flex items-center">
-                                <i class="fas fa-user-check mr-2"></i>
-                                个人专属补偿
-                            </h4>
-                            <div class="compensation-grid">
-                                <!-- Creeper_xu -->
-                                <div class="player-card player-creeper">
-                                    <h5 class="font-bold text-green-400 mb-2">Creeper_xu</h5>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• 两组骨粉</li>
-                                        <li>• 所有农作物各1组</li>
-                                        <li>• 三组原木</li>
-                                        <li>• 三组原石</li>
-                                        <li>• 每个工作站方块各1个</li>
-                                        <li>• 三组面包</li>
-                                        <li>• 20级经验</li>
-                                        <li>• 1颗心</li>
-                                        <li>• 10张床</li>
-                                        <li>• 刷铁机重建协助</li>
-                                    </ul>
-                                </div>
-
-                                <!-- .woainitaishi -->
-                                <div class="player-card player-woainitaishi">
-                                    <h5 class="font-bold text-blue-400 mb-2">.woainitaishi</h5>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• 二组铁锭</li>
-                                        <li>• 钻石若干</li>
-                                    </ul>
-                                </div>
-
-                                <!-- pojoy3745 -->
-                                <div class="player-card player-pojoy">
-                                    <h5 class="font-bold text-purple-400 mb-2">pojoy3745</h5>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• 每个工作方块各1个</li>
-                                        <li>• 1组原石</li>
-                                        <li>• 1组木头</li>
-                                        <li>• 2个牛生物蛋</li>
-                                        <li>• 1个村民</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center mt-4 pt-4 border-t border-gray-600">
-                            <p class="text-gray-300">请相关玩家联系管理员领取补偿物品</p>
-                            <p class="text-gray-400 text-sm mt-2">感谢大家的理解与支持！</p>
-                        </div>
-                    </div>
+                <!-- 公告提示卡片 -->
+                <div class="bg-gradient-to-r from-yellow-900 to-orange-900 p-8 rounded-xl border-2 border-yellow-500 text-center">
+                    <i class="fas fa-bullhorn text-yellow-400 text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-yellow-400 mb-4">查看最新公告</h3>
+                    <p class="text-gray-300 mb-6">我们发布了重要的服务器公告，包含数据恢复补偿方案等重要信息。</p>
+                    <button onclick="openAnnouncementModal()" class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg font-semibold transition inline-flex items-center">
+                        <i class="fas fa-eye mr-2"></i>
+                        查看完整公告
+                    </button>
                 </div>
 
-                <!-- 紧急公告 -->
-                <div class="urgent-announcement p-6 rounded-xl">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-exclamation-triangle text-yellow-400 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-semibold text-white">重要通知：服务器数据恢复与补偿方案</h3>
-                        <span class="ml-auto text-gray-300 text-sm">2025年11月16日</span>
-                    </div>
-                    
-                    <div class="space-y-4 text-gray-200">
-                        <div class="bg-red-900 bg-opacity-50 p-4 rounded-lg border border-red-700">
-                            <div class="flex items-start">
-                                <i class="fas fa-heart-broken text-red-400 text-xl mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-red-300 mb-2">致各位亲爱的玩家：</h4>
-                                    <p class="mb-3">我们怀着沉重的心情向大家告知一个不幸的消息。由于服务器在2025年11月16日下午1点后遭遇突发技术故障，导致部分数据意外丢失。</p>
-                                    <p class="mb-3">尽管我们竭尽全力尝试恢复，但为确保服务器的稳定运行，我们不得不将数据回滚至当天下午1点的备份状态。</p>
-                                    <p>我们深知各位玩家在此期间付出的努力和心血，对于此次意外给大家带来的损失和不便，我们表示最诚挚的歉意。😢</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-green-900 bg-opacity-50 p-4 rounded-lg border border-green-700">
-                            <div class="flex items-start">
-                                <i class="fas fa-gift text-green-400 text-xl mt-1 mr-3"></i>
-                                <div>
-                                    <h4 class="font-semibold text-green-300 mb-2">补偿方案</h4>
-                                    <p class="mb-3">为表达我们的歉意并感谢大家的理解与支持，我们将提供以下补偿：</p>
-                                    <ul class="list-disc list-inside space-y-2 ml-4">
-                                        <li><span class="text-yellow-300 font-semibold">全天飞行权限</span>：特定日期全天，所有玩家将获得飞行权限</li>
-                                        <li><span class="text-yellow-300 font-semibold">丰厚物资补偿</span>：根据玩家损失情况提供个性化补偿</li>
-                                        <li><span class="text-yellow-300 font-semibold">经验补偿</span>：为老玩家提供经验等级补偿</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center mt-6 pt-4 border-t border-gray-700">
-                            <p class="text-gray-300">再次感谢各位玩家的理解与支持，我们会继续努力为大家提供更好的游戏体验。</p>
-                            <p class="text-gray-400 text-sm mt-2">—— 服务器管理团队 敬上</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 最新常规公告 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-yellow-600">
-                    <div class="flex items-center mb-4">
-                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
-                        <h3 class="text-xl font-semibold">最新公告</h3>
-                        <span class="ml-auto text-gray-400 text-sm">2025年11月15日 18:37</span>
-                    </div>
-                    
-                    <div class="space-y-4 text-gray-200">
-                        <p>欢迎来到我们的Minecraft服务器！以下是服务器信息：</p>
-                        
-                        <div class="bg-gray-700 p-4 rounded-lg">
-                            <h4 class="font-semibold text-green-400 mb-2">Java版服务器</h4>
-                            <p>地址: <span class="server-address">bffc302bbe83.ofalias.com:64533</span></p>
-                            <p>版本: <span class="text-blue-300">1.21.10</span></p>
-                        </div>
-                        
-                        <div class="bg-gray-700 p-4 rounded-lg">
-                            <h4 class="font-semibold text-blue-400 mb-2">基岩版服务器</h4>
-                            <p>地址: <span class="server-address">bffc302bbe83.ofalias.com:23047</span></p>
-                            <p>版本: <span class="text-purple-300">最新版本</span></p>
-                        </div>
-                        
-                        <p class="mt-4">服务器持续运行中，欢迎大家加入一起游玩！如有问题请联系管理员。</p>
-                    </div>
-                </div>
-                
                 <!-- 服务器规则公告 -->
                 <div class="bg-gray-800 p-6 rounded-xl border border-green-600">
                     <div class="flex items-center mb-4">
@@ -486,6 +418,147 @@
         </div>
     </footer>
 
+    <!-- 公告弹窗 -->
+    <div id="announcementModal" class="announcement-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold text-white">
+                    <i class="fas fa-exclamation-triangle mr-3"></i>
+                    重要服务器公告
+                </h2>
+                <button class="close-btn" onclick="closeAnnouncementModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- 补偿公告 -->
+                <div class="bg-gradient-to-r from-purple-900 to-blue-900 p-6 rounded-xl border-2 border-yellow-500 mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-gift text-yellow-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-white">🎁 数据恢复补偿方案 - 具体安排</h3>
+                        <span class="ml-auto text-gray-300 text-sm">2025年11月18日</span>
+                    </div>
+                    
+                    <div class="space-y-4 text-gray-200">
+                        <!-- 通用补偿 -->
+                        <div class="bg-green-900 bg-opacity-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-300 mb-3 flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                全体玩家补偿
+                            </h4>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li><span class="text-yellow-300">飞行权限</span>：下周六全天所有玩家可获得飞行权限</li>
+                                <li><span class="text-yellow-300">经验补偿</span>：所有老玩家（非新人）获得10级经验</li>
+                            </ul>
+                        </div>
+
+                        <!-- 个人补偿 -->
+                        <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-300 mb-3 flex items-center">
+                                <i class="fas fa-user-check mr-2"></i>
+                                个人专属补偿
+                            </h4>
+                            <div class="compensation-grid">
+                                <!-- Creeper_xu -->
+                                <div class="player-card player-creeper">
+                                    <h5 class="font-bold text-green-400 mb-2">Creeper_xu</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 两组骨粉</li>
+                                        <li>• 所有农作物各1组</li>
+                                        <li>• 三组原木</li>
+                                        <li>• 三组原石</li>
+                                        <li>• 每个工作站方块各1个</li>
+                                        <li>• 三组面包</li>
+                                        <li>• 20级经验</li>
+                                        <li>• 1颗心</li>
+                                        <li>• 10张床</li>
+                                        <li>• 刷铁机重建协助</li>
+                                    </ul>
+                                </div>
+
+                                <!-- .woainitaishi -->
+                                <div class="player-card player-woainitaishi">
+                                    <h5 class="font-bold text-blue-400 mb-2">.woainitaishi</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 二组铁锭</li>
+                                        <li>• 钻石若干</li>
+                                    </ul>
+                                </div>
+
+                                <!-- pojoy3745 -->
+                                <div class="player-card player-pojoy">
+                                    <h5 class="font-bold text-purple-400 mb-2">pojoy3745</h5>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• 每个工作方块各1个</li>
+                                        <li>• 1组原石</li>
+                                        <li>• 1组木头</li>
+                                        <li>• 2个牛生物蛋</li>
+                                        <li>• 1个村民</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4 pt-4 border-t border-gray-600">
+                            <p class="text-gray-300">请相关玩家联系管理员领取补偿物品</p>
+                            <p class="text-gray-400 text-sm mt-2">感谢大家的理解与支持！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 紧急公告 -->
+                <div class="urgent-announcement p-6 rounded-xl mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-white">重要通知：服务器数据恢复与补偿方案</h3>
+                        <span class="ml-auto text-gray-300 text-sm">2025年11月16日</span>
+                    </div>
+                    
+                    <div class="space-y-4 text-gray-200">
+                        <div class="bg-red-900 bg-opacity-50 p-4 rounded-lg border border-red-700">
+                            <div class="flex items-start">
+                                <i class="fas fa-heart-broken text-red-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-red-300 mb-2">致各位亲爱的玩家：</h4>
+                                    <p class="mb-3">我们怀着沉重的心情向大家告知一个不幸的消息。由于服务器在2025年11月16日下午1点后遭遇突发技术故障，导致部分数据意外丢失。</p>
+                                    <p class="mb-3">尽管我们竭尽全力尝试恢复，但为确保服务器的稳定运行，我们不得不将数据回滚至当天下午1点的备份状态。</p>
+                                    <p>我们深知各位玩家在此期间付出的努力和心血，对于此次意外给大家带来的损失和不便，我们表示最诚挚的歉意。😢</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-900 bg-opacity-50 p-4 rounded-lg border border-green-700">
+                            <div class="flex items-start">
+                                <i class="fas fa-gift text-green-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-300 mb-2">补偿方案</h4>
+                                    <p class="mb-3">为表达我们的歉意并感谢大家的理解与支持，我们将提供以下补偿：</p>
+                                    <ul class="list-disc list-inside space-y-2 ml-4">
+                                        <li><span class="text-yellow-300 font-semibold">全天飞行权限</span>：特定日期全天，所有玩家将获得飞行权限</li>
+                                        <li><span class="text-yellow-300 font-semibold">丰厚物资补偿</span>：根据玩家损失情况提供个性化补偿</li>
+                                        <li><span class="text-yellow-300 font-semibold">经验补偿</span>：为老玩家提供经验等级补偿</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6 pt-4 border-t border-gray-700">
+                            <p class="text-gray-300">再次感谢各位玩家的理解与支持，我们会继续努力为大家提供更好的游戏体验。</p>
+                            <p class="text-gray-400 text-sm mt-2">—— 服务器管理团队 敬上</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 关闭按钮 -->
+                <div class="text-center mt-6">
+                    <button onclick="closeAnnouncementModal()" class="bg-gray-600 hover:bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold transition">
+                        关闭公告
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         // 移动端菜单切换
@@ -514,6 +587,36 @@
                 }
             });
         });
+
+        // 公告弹窗功能
+        function openAnnouncementModal() {
+            document.getElementById('announcementModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAnnouncementModal() {
+            document.getElementById('announcementModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击弹窗外部关闭
+        document.getElementById('announcementModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAnnouncementModal();
+            }
+        });
+
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAnnouncementModal();
+            }
+        });
+
+        // 页面加载后自动显示公告（可选）
+        // window.addEventListener('load', function() {
+        //     setTimeout(openAnnouncementModal, 1000);
+        // });
     </script>
 </body>
 </html>
