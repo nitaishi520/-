@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>启动器下载 - Minecraft服务器 - nitaishi.top</title>
+    <title>资源下载中心 - Minecraft服务器 - nitaishi.top</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -40,12 +40,12 @@
                 <div class="font-bold text-xl text-green-500 flex items-center">
                     <i class="fas fa-cube mr-2"></i> 
                     <a href="index.html">nitaishi.top</a>
-                    <span class="text-gray-400 ml-2 text-lg">/ 启动器下载</span>
+                    <span class="text-gray-400 ml-2 text-lg">/ 资源下载中心</span>
                 </div>
                 <div class="space-x-6 hidden md:flex">
                     <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
-                    <a href="#mobile" class="text-gray-300 hover:text-green-400 transition">手机启动器</a>
-                    <a href="#pc" class="text-gray-300 hover:text-green-400 transition">电脑启动器</a>
+                    <a href="#launchers" class="text-gray-300 hover:text-green-400 transition">游戏启动器</a>
+                    <a href="#textures" class="text-gray-300 hover:text-green-400 transition">材质包</a>
                 </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-300 hover:text-green-400">
@@ -56,8 +56,8 @@
             <!-- 移动端菜单 -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
-                <a href="#mobile" class="block py-2 text-gray-300 hover:text-green-400">手机启动器</a>
-                <a href="#pc" class="block py-2 text-gray-300 hover:text-green-400">电脑启动器</a>
+                <a href="#launchers" class="block py-2 text-gray-300 hover:text-green-400">游戏启动器</a>
+                <a href="#textures" class="block py-2 text-gray-300 hover:text-green-400">材质包</a>
             </div>
         </div>
     </nav>
@@ -65,24 +65,24 @@
     <!-- 主页英雄区域 -->
     <section class="minecraft-gradient text-white py-16">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4">Minecraft启动器下载</h1>
-            <p class="text-xl mb-8">选择适合您设备的启动器，轻松加入我们的服务器</p>
+            <h1 class="text-4xl font-bold mb-4">资源下载中心</h1>
+            <p class="text-xl mb-8">一站式获取游戏启动器和精美材质包</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#mobile" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition">
-                    <i class="fas fa-mobile-alt mr-2"></i>手机启动器
+                <a href="#launchers" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                    <i class="fas fa-rocket mr-2"></i>游戏启动器
                 </a>
-                <a href="#pc" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition">
-                    <i class="fas fa-desktop mr-2"></i>电脑启动器
+                <a href="#textures" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                    <i class="fas fa-palette mr-2"></i>材质包
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 手机启动器下载区域 -->
-    <section id="mobile" class="py-16 bg-gray-800">
+    <!-- 游戏启动器下载区域 -->
+    <section id="launchers" class="py-16 bg-gray-800">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-400">
-                <i class="fas fa-mobile-alt mr-3"></i>手机版启动器
+                <i class="fas fa-rocket mr-3"></i>游戏启动器
             </h2>
             
             <div class="grid md:grid-cols-2 gap-8">
@@ -122,178 +122,303 @@
                     </div>
                 </div>
 
-                <!-- 手机启动器说明 -->
-                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-yellow-500">
+                <!-- 电脑启动器合集 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-blue-500">
                     <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-info-circle text-white text-2xl"></i>
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-desktop text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-yellow-400">下载说明</h3>
-                    </div>
-                    
-                    <div class="space-y-4 text-gray-300">
-                        <div class="bg-gray-600 p-4 rounded-lg">
-                            <h4 class="font-semibold text-green-400 mb-2">包含内容：</h4>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Fold Craft Launcher 1.2.6.7</li>
-                                <li>Zalith Launcher 1.4.1.0</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="bg-gray-600 p-4 rounded-lg">
-                            <h4 class="font-semibold text-blue-400 mb-2">下载步骤：</h4>
-                            <ol class="list-decimal list-inside space-y-1">
-                                <li>点击上方按钮打开123网盘</li>
-                                <li>在网盘中下载需要的启动器</li>
-                                <li>安装到手机即可使用</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 电脑启动器下载区域 -->
-    <section id="pc" class="py-16 bg-gray-900">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">
-                <i class="fas fa-desktop mr-3"></i>电脑版启动器
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- HMCL Windows -->
-                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fab fa-windows text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-orange-400">HMCL</h3>
-                        <p class="text-gray-400 text-sm">Windows 版本</p>
+                        <h3 class="text-xl font-semibold text-blue-400">电脑启动器合集</h3>
+                        <p class="text-gray-400 text-sm">支持 Windows、Mac、Linux</p>
                     </div>
                     
                     <div class="space-y-3 mb-6">
                         <div class="flex justify-between">
                             <span class="text-gray-400">平台：</span>
-                            <span class="text-green-400">Windows</span>
+                            <span class="text-green-400">全平台</span>
                         </div>
                         <div class="flex justify-between">
+                            <span class="text-gray-400">包含：</span>
+                            <span class="text-blue-400">5款启动器</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">类型：</span>
+                            <span class="text-yellow-400">直接下载</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="#pc-launchers" class="w-full download-btn bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-arrow-down mr-2"></i>
+                            查看电脑启动器
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 电脑启动器详细列表 -->
+            <div id="pc-launchers" class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- HMCL Windows -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
+                    <div class="text-center mb-6">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-windows text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-orange-400">HMCL</h3>
+                        <p class="text-gray-400 text-sm">Windows 版本</p>
+                    </div>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
                             <span class="text-gray-400">版本：</span>
                             <span class="text-blue-400">3.6.15.287</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between text-sm">
                             <span class="text-gray-400">大小：</span>
                             <span class="text-yellow-400">7.39 MB</span>
                         </div>
                     </div>
                     
-                    <div class="space-y-3">
-                        <a href="HMCL-3.6.15.287.exe" class="w-full download-btn bg-orange-600 hover:bg-orange-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i>
-                            下载 HMCL (Windows)
-                        </a>
-                    </div>
+                    <a href="HMCL-3.6.15.287.exe" class="w-full download-btn bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载 Windows 版
+                    </a>
                 </div>
 
                 <!-- PCL2 Windows -->
                 <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
                     <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fab fa-windows text-white text-2xl"></i>
+                        <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-windows text-white text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-indigo-400">PCL2</h3>
+                        <h3 class="text-lg font-semibold text-indigo-400">PCL2</h3>
                         <p class="text-gray-400 text-sm">Community Edition</p>
                     </div>
                     
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">平台：</span>
-                            <span class="text-green-400">Windows x64</span>
-                        </div>
-                        <div class="flex justify-between">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
                             <span class="text-gray-400">版本：</span>
                             <span class="text-blue-400">Release</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between text-sm">
                             <span class="text-gray-400">大小：</span>
                             <span class="text-yellow-400">7.73 MB</span>
                         </div>
                     </div>
                     
-                    <div class="space-y-3">
-                        <a href="PCL2__CE__Release__x64.exe" class="w-full download-btn bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i>
-                            下载 PCL2社区版 (Windows)
-                        </a>
-                    </div>
+                    <a href="PCL2__CE__Release__x64.exe" class="w-full download-btn bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载 Windows 版
+                    </a>
                 </div>
 
                 <!-- Plain Craft Launcher 2 -->
                 <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
                     <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fab fa-windows text-white text-2xl"></i>
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-windows text-white text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-purple-400">Plain Craft Launcher 2</h3>
+                        <h3 class="text-lg font-semibold text-purple-400">Plain Craft Launcher 2</h3>
                         <p class="text-gray-400 text-sm">官方版本</p>
                     </div>
                     
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">平台：</span>
-                            <span class="text-green-400">Windows</span>
-                        </div>
-                        <div class="flex justify-between">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
                             <span class="text-gray-400">版本：</span>
                             <span class="text-blue-400">最新版</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between text-sm">
                             <span class="text-gray-400">大小：</span>
                             <span class="text-yellow-400">5.49 MB</span>
                         </div>
                     </div>
                     
-                    <div class="space-y-3">
-                        <a href="Plain Craft Launcher 2.exe" class="w-full download-btn bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-semibold transition flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i>
-                            下载 PCL2 官方版
-                        </a>
+                    <a href="Plain Craft Launcher 2.exe" class="w-full download-btn bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载官方版
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 材质包下载区域 -->
+    <section id="textures" class="py-16 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">
+                <i class="fas fa-palette mr-3"></i>精美材质包
+            </h2>
+            
+            <div class="bg-yellow-900 bg-opacity-50 p-6 rounded-xl border border-yellow-500 mb-8">
+                <div class="flex items-start">
+                    <i class="fas fa-info-circle text-yellow-400 text-xl mt-1 mr-4"></i>
+                    <div>
+                        <h3 class="text-lg font-semibold text-yellow-400 mb-2">使用说明</h3>
+                        <p class="text-gray-300">以下材质包均为可选内容，不要求必须安装。请根据个人喜好选择下载。</p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Better Leaves -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-green-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-leaf text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-green-400">Better Leaves</h3>
+                        <p class="text-gray-400 text-sm">版本 9.4</p>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm mb-4 text-center">优化树叶纹理，让森林更加生动逼真</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">效果：</span>
+                        <span class="text-yellow-400">树叶优化</span>
+                    </div>
+                    
+                    <a href="Better-Leaves-9.4.zip" class="w-full download-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
+                </div>
 
-                <!-- HMCL Linux/Mac -->
-                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fab fa-linux text-white text-2xl"></i>
+                <!-- Default HD -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-blue-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-star text-white text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-red-400">HMCL</h3>
-                        <p class="text-gray-400 text-sm">Linux & Mac 版本</p>
+                        <h3 class="text-lg font-semibold text-blue-400">Default HD</h3>
+                        <p class="text-gray-400 text-sm">512x 演示版 1.5.2.1</p>
                     </div>
                     
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">平台：</span>
-                            <span class="text-green-400">Linux/Mac</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">版本：</span>
-                            <span class="text-blue-400">3.6.15.287</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">大小：</span>
-                            <span class="text-yellow-400">6.97 MB</span>
-                        </div>
+                    <p class="text-gray-300 text-sm mb-4 text-center">高清原版材质，保持经典风格的同时提升画质</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">分辨率：</span>
+                        <span class="text-yellow-400">512x</span>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-2">
-                        <a href="HMCL-3.6.15.287.jar" class="download-btn bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded text-sm text-center transition">
-                            <i class="fas fa-download mr-1"></i>JAR版
-                        </a>
-                        <a href="HMCL-3.6.15.287.sh" class="download-btn bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded text-sm text-center transition">
-                            <i class="fas fa-download mr-1"></i>SH版
-                        </a>
+                    <a href="Default HD 512x Demo 1.5.2.1.zip" class="w-full download-btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
+                </div>
+
+                <!-- 3D Crops -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-yellow-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-seedling text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-yellow-400">3D Crops</h3>
+                        <p class="text-gray-400 text-sm">3D 农作物</p>
                     </div>
+                    
+                    <p class="text-gray-300 text-sm mb-4 text-center">让农作物呈现立体效果，农场更加生动</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">特色：</span>
+                        <span class="text-yellow-400">3D 模型</span>
+                    </div>
+                    
+                    <a href="crops-3d(2).zip" class="w-full download-btn bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
+                </div>
+
+                <!-- Fast Better Grass -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-green-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-tree text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-green-400">Fast Better Grass</h3>
+                        <p class="text-gray-400 text-sm">快速优化草地</p>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm mb-4 text-center">优化草地纹理，性能友好的草地美化</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">性能：</span>
+                        <span class="text-yellow-400">低消耗</span>
+                    </div>
+                    
+                    <a href="Fast Better Grass.zip" class="w-full download-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
+                </div>
+
+                <!-- Round Trees -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-orange-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-circle text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-orange-400">Round Trees</h3>
+                        <p class="text-gray-400 text-sm">版本 8.0</p>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm mb-4 text-center">圆形树木材质，让树木看起来更加自然圆润</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">风格：</span>
+                        <span class="text-yellow-400">圆形树木</span>
+                    </div>
+                    
+                    <a href="Round-Trees-8.0.zip" class="w-full download-btn bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
+                </div>
+
+                <!-- Simple Grass Flowers -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-pink-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-flower text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-pink-400">Simple Grass Flowers</h3>
+                        <p class="text-gray-400 text-sm">版本 1.9.6</p>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm mb-4 text-center">简约风格的草地花朵，为世界增添色彩</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">类型：</span>
+                        <span class="text-yellow-400">花草美化</span>
+                    </div>
+                    
+                    <a href="Simple Grass Flowers v1.9.6.zip" class="w-full download-btn bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
+                </div>
+
+                <!-- UltiCraft Models 3D -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border border-purple-500">
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-cube text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-purple-400">UltiCraft Models 3D</h3>
+                        <p class="text-gray-400 text-sm">版本 2.44.0</p>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm mb-4 text-center">全面的3D模型材质包，让方块世界更加立体</p>
+                    
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <span class="text-gray-400">范围：</span>
+                        <span class="text-yellow-400">全面3D化</span>
+                    </div>
+                    
+                    <a href="UltiCraft-Models3D-2.44.0.zip" class="w-full download-btn bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded text-sm font-semibold transition flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>
+                        下载材质包
+                    </a>
                 </div>
             </div>
         </div>
@@ -308,32 +433,32 @@
             
             <div class="space-y-6">
                 <div class="bg-gray-700 p-6 rounded-xl">
-                    <h3 class="text-xl font-semibold text-green-400 mb-4">安装步骤</h3>
+                    <h3 class="text-xl font-semibold text-green-400 mb-4">材质包安装方法</h3>
                     <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                        <li>下载适合您设备的启动器文件</li>
-                        <li><strong>手机用户</strong>：点击"前往123网盘下载"获取手机启动器</li>
-                        <li><strong>电脑用户</strong>：直接点击对应版本下载</li>
-                        <li>安装启动器并打开</li>
-                        <li>登录您的Minecraft账号</li>
-                        <li>下载对应的游戏版本</li>
-                        <li>添加服务器地址：<code class="bg-gray-800 px-2 py-1 rounded">bffc302bbe83.ofalias.com</code></li>
+                        <li>下载喜欢的材质包 ZIP 文件</li>
+                        <li>打开 Minecraft 游戏</li>
+                        <li>进入"选项" → "资源包"</li>
+                        <li>点击"打开资源包文件夹"</li>
+                        <li>将下载的 ZIP 文件复制到该文件夹</li>
+                        <li>返回游戏，在资源包列表中选择启用</li>
+                        <li>点击"完成"应用更改</li>
                     </ol>
                 </div>
                 
                 <div class="bg-gray-700 p-6 rounded-xl">
-                    <h3 class="text-xl font-semibold text-blue-400 mb-4">常见问题</h3>
+                    <h3 class="text-xl font-semibold text-blue-400 mb-4">注意事项</h3>
                     <div class="space-y-4">
                         <div>
-                            <h4 class="font-semibold text-yellow-400">手机安装失败？</h4>
-                            <p class="text-gray-300">请检查设备存储空间，并确保已开启未知来源安装权限。</p>
+                            <h4 class="font-semibold text-yellow-400">兼容性</h4>
+                            <p class="text-gray-300">请确保材质包版本与您的游戏版本兼容</p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-yellow-400">无法登录账号？</h4>
-                            <p class="text-gray-300">请确认使用的是正版账号，或检查网络连接。</p>
+                            <h4 class="font-semibold text-yellow-400">性能影响</h4>
+                            <p class="text-gray-300">高清材质包可能会影响游戏性能，请根据设备配置选择</p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-yellow-400">Linux系统如何安装？</h4>
-                            <p class="text-gray-300">使用命令：<code class="bg-gray-800 px-2 py-1 rounded">chmod +x HMCL-3.6.15.287.sh && ./HMCL-3.6.15.287.sh</code></p>
+                            <h4 class="font-semibold text-yellow-400">可选安装</h4>
+                            <p class="text-gray-300">所有材质包均为可选内容，不影响正常游戏</p>
                         </div>
                     </div>
                 </div>
@@ -344,7 +469,7 @@
     <!-- 页脚 -->
     <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p>&copy; 2025 nitaishi.top - Minecraft服务器启动器下载</p>
+            <p>&copy; 2025 nitaishi.top - Minecraft服务器资源下载中心</p>
             <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
             <p class="mt-2">
                 <a href="index.html" class="text-green-400 hover:underline">返回主页</a>
@@ -376,7 +501,7 @@
         });
 
         // 使用教程模态框
-        function showInstructions(launcher) {
+        function showInstructions(type) {
             const modal = document.getElementById('instructions-modal');
             const title = document.getElementById('modal-title');
             const content = document.getElementById('modal-content');
@@ -397,17 +522,12 @@
                         </ol>
                         <h4 class="font-semibold text-yellow-400 mb-2">服务器地址：</h4>
                         <p class="bg-gray-700 p-2 rounded font-mono">bffc302bbe83.ofalias.com:64533</p>
-                        <h4 class="font-semibold text-yellow-400 mb-2">包含启动器：</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Fold Craft Launcher 1.2.6.7</li>
-                            <li>Zalith Launcher 1.4.1.0</li>
-                        </ul>
                     `
                 }
             };
             
-            title.textContent = instructions[launcher].title;
-            content.innerHTML = instructions[launcher].content;
+            title.textContent = instructions[type].title;
+            content.innerHTML = instructions[type].content;
             modal.classList.remove('hidden');
         }
         
