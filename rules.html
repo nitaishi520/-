@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器规则 - Minecraft服务器 - nitaishi.top</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .minecraft-gradient {
+            background: linear-gradient(-45deg, #3a7d34, #306230, #215732);
+            background-size: 400% 400%;
+            animation: gradient-bg 10s ease infinite;
+        }
+        @keyframes gradient-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- 导航栏 -->
+    <nav class="bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="font-bold text-xl text-green-500 flex items-center">
+                    <i class="fas fa-cube mr-2"></i> 
+                    <a href="index.html">nitaishi.top</a>
+                    <span class="text-gray-400 ml-2 text-lg">/ 服务器规则</span>
+                </div>
+                <div class="space-x-6 hidden md:flex">
+                    <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
+                    <a href="#prohibited" class="text-gray-300 hover:text-green-400 transition">禁止行为</a>
+                    <a href="#penalty" class="text-gray-300 hover:text-green-400 transition">处罚制度</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-green-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
+                <a href="#prohibited" class="block py-2 text-gray-300 hover:text-green-400">禁止行为</a>
+                <a href="#penalty" class="block py-2 text-gray-300 hover:text-green-400">处罚制度</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页英雄区域 -->
+    <section class="minecraft-gradient text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">服务器规则</h1>
+            <p class="text-xl mb-8">为了维护公平、友好的游戏环境，请仔细阅读并遵守以下规则</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#prohibited" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                    <i class="fas fa-ban mr-2"></i>禁止行为
+                </a>
+                <a href="#penalty" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                    <i class="fas fa-gavel mr-2"></i>处罚制度
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 禁止行为区域 -->
+    <section id="prohibited" class="py-16 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-red-400">
+                <i class="fas fa-ban mr-3"></i>禁止行为
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- 外挂作弊 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border-l-4 border-red-500">
+                    <div class="flex items-start">
+                        <i class="fas fa-skull-crossbones text-red-400 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-red-400 mb-4">严禁使用外挂和作弊程序</h3>
+                            <div class="space-y-3 text-gray-300">
+                                <div class="bg-gray-800 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-400 mb-2">完全禁止：</h4>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>任何形式的外挂程序（X-ray、飞行挂、自动点击等）</li>
+                                        <li>修改客户端文件以获得不正当优势</li>
+                                        <li>利用BUG重复获取经验和心物品</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-800 p-4 rounded-lg border-l-4 border-green-500">
+                                    <h4 class="font-semibold text-green-400 mb-2">允许使用：</h4>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>投影模组（仅限于建筑辅助用途）</li>
+                                        <li>性能优化类模组</li>
+                                        <li>不影响游戏平衡的客户端美化</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 言行规范 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border-l-4 border-orange-500">
+                    <div class="flex items-start">
+                        <i class="fas fa-comment-slash text-orange-400 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-orange-400 mb-4">言行规范要求</h3>
+                            <div class="space-y-3 text-gray-300">
+                                <div class="bg-gray-800 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-400 mb-2">严禁行为：</h4>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>使用侮辱性、攻击性语言或人身攻击</li>
+                                        <li>发表违反国家法律法规的言论</li>
+                                        <li>恶意刷屏、发布垃圾信息</li>
+                                        <li>发布商业广告或无关链接</li>
+                                        <li>宣传其他Minecraft服务器</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 游戏漏洞 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border-l-4 border-purple-500">
+                    <div class="flex items-start">
+                        <i class="fas fa-bug text-purple-400 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-purple-400 mb-4">游戏漏洞利用限制</h3>
+                            <div class="space-y-3 text-gray-300">
+                                <div class="bg-gray-800 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-400 mb-2">严格禁止：</h4>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>利用任何BUG获取经验值</li>
+                                        <li>利用任何BUG获取心物品</li>
+                                        <li>重复刷取稀有物品破坏经济平衡</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-800 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <h4 class="font-semibold text-blue-400 mb-2">发现漏洞时：</h4>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>请立即向管理员报告</li>
+                                        <li>不要传播或利用漏洞</li>
+                                        <li>配合管理员进行修复测试</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 处罚制度区域 -->
+    <section id="penalty" class="py-16 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-yellow-400">
+                <i class="fas fa-gavel mr-3"></i>处罚制度
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- 处罚流程 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border-l-4 border-yellow-500">
+                    <div class="flex items-start">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-yellow-400 mb-4">违规处罚流程</h3>
+                            <div class="space-y-4">
+                                <!-- 初次违规 -->
+                                <div class="bg-yellow-900 bg-opacity-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-300 mb-2">初次违规</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                                        <li>系统自动发出警告提示</li>
+                                        <li>反作弊插件自动记录违规行为</li>
+                                        <li>管理员进行人工审核确认</li>
+                                        <li>情节轻微者给予口头警告</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 多次违规 -->
+                                <div class="bg-orange-900 bg-opacity-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-orange-300 mb-2">多次违规</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                                        <li>违规记录被永久保存至服务器文件</li>
+                                        <li>根据情节严重程度封禁1-7天</li>
+                                        <li>封禁期间无法登录服务器</li>
+                                        <li>解封后进入观察期</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 严重违规 -->
+                                <div class="bg-red-900 bg-opacity-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-red-300 mb-2">严重违规</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                                        <li>使用外挂程序直接永久封禁</li>
+                                        <li>恶意破坏服务器环境永久封禁</li>
+                                        <li>封禁名单公示且不可申诉</li>
+                                        <li>相关账号信息列入黑名单</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 温馨提示 -->
+                <div class="card-hover bg-gray-700 p-6 rounded-xl border-l-4 border-green-500">
+                    <div class="flex items-start">
+                        <i class="fas fa-hands-helping text-green-400 text-2xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-400 mb-4">温馨提示</h3>
+                            <div class="space-y-4 text-gray-300">
+                                <p>我们希望各位玩家能够严格遵守以上规则，共同维护一个公平、友好的游戏环境。</p>
+                                <div class="bg-gray-800 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-400 mb-2">特别说明：</h4>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>除特殊情况外，所有规则必须严格执行</li>
+                                        <li>如有疑问请及时联系管理员咨询</li>
+                                        <li>良好的游戏环境需要大家共同创造</li>
+                                        <li>感谢您的理解与配合！</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-gray-400 py-8 border-t border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2025 nitaishi.top - Minecraft服务器规则</p>
+            <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
+            <p class="mt-2">
+                <a href="index.html" class="text-green-400 hover:underline">返回主页</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
