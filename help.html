@@ -32,39 +32,6 @@
             border-radius: 4px;
             border: 1px solid #374151;
         }
-        .minecraft-btn {
-            background-color: #3a7d34;
-            transition: all 0.3s ease;
-        }
-        .minecraft-btn:hover {
-            background-color: #306230;
-            transform: translateY(-2px);
-        }
-        .help-category {
-            border-left: 4px solid #3a7d34;
-            transition: all 0.3s ease;
-        }
-        .help-category:hover {
-            border-left-color: #10b981;
-        }
-        .faq-item {
-            border-bottom: 1px solid #374151;
-            transition: all 0.3s ease;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        .faq-question {
-            cursor: pointer;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
         .command-table {
             width: 100%;
             border-collapse: collapse;
@@ -87,6 +54,31 @@
         .command-table tr:hover {
             background-color: #4B5563;
         }
+        .faq-item {
+            border-bottom: 1px solid #374151;
+            transition: all 0.3s ease;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        .feature-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
@@ -102,7 +94,8 @@
                 <div class="space-x-6 hidden md:flex">
                     <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
                     <a href="#commands" class="text-gray-300 hover:text-green-400 transition">指令帮助</a>
-                    <a href="#contact" class="text-gray-300 hover:text-green-400 transition">联系我们</a>
+                    <a href="#life-system" class="text-gray-300 hover:text-green-400 transition">生命掠夺</a>
+                    <a href="#faq" class="text-gray-300 hover:text-green-400 transition">常见问题</a>
                 </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-300 hover:text-green-400">
@@ -114,7 +107,8 @@
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
                 <a href="#commands" class="block py-2 text-gray-300 hover:text-green-400">指令帮助</a>
-                <a href="#contact" class="block py-2 text-gray-300 hover:text-green-400">联系我们</a>
+                <a href="#life-system" class="block py-2 text-gray-300 hover:text-green-400">生命掠夺</a>
+                <a href="#faq" class="block py-2 text-gray-300 hover:text-green-400">常见问题</a>
             </div>
         </div>
     </nav>
@@ -144,31 +138,31 @@
             <h2 class="text-2xl font-bold text-center mb-8 text-green-400">🚀 快速帮助</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <a href="#joining" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
-                    <div class="text-4xl text-green-400 mb-4">
-                        <i class="fas fa-door-open"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">加入服务器</h3>
-                    <p class="text-gray-400">如何连接和进入服务器</p>
-                </a>
-                
                 <a href="#commands" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
-                    <div class="text-4xl text-yellow-400 mb-4">
+                    <div class="text-4xl text-green-400 mb-4">
                         <i class="fas fa-terminal"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">指令帮助</h3>
                     <p class="text-gray-400">查看所有可用指令</p>
                 </a>
                 
-                <a href="#rules" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                <a href="#life-system" class="card-hover bg-gray-700 p-6 rounded-xl border border-red-600 text-center">
                     <div class="text-4xl text-red-400 mb-4">
-                        <i class="fas fa-gavel"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">服务器规则</h3>
-                    <p class="text-gray-400">了解服务器规则和指南</p>
+                    <h3 class="text-xl font-semibold mb-2">生命掠夺</h3>
+                    <p class="text-gray-400">生命值管理系统</p>
                 </a>
                 
-                <a href="#faq" class="card-hover bg-gray-700 p-6 rounded-xl border border-gray-600 text-center">
+                <a href="#ghost-system" class="card-hover bg-gray-700 p-6 rounded-xl border border-purple-600 text-center">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">幽灵系统</h3>
+                    <p class="text-gray-400">幽灵状态说明</p>
+                </a>
+                
+                <a href="#faq" class="card-hover bg-gray-700 p-6 rounded-xl border border-blue-600 text-center">
                     <div class="text-4xl text-blue-400 mb-4">
                         <i class="fas fa-question-circle"></i>
                     </div>
@@ -179,10 +173,227 @@
         </div>
     </section>
 
+    <!-- 生命掠夺系统 -->
+    <section id="life-system" class="py-16 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-red-400">
+                <i class="fas fa-heart-crack mr-3"></i>生命掠夺系统
+            </h2>
+
+            <!-- 系统概述 -->
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-red-500 mb-8">
+                <h3 class="text-xl font-semibold text-red-400 mb-4">系统概述</h3>
+                <p class="text-gray-300 mb-4">生命掠夺系统是一个独特的PVP机制，让玩家之间的战斗更加刺激，同时也增加了生存的挑战性。</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-900 bg-opacity-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-red-300 mb-2">核心机制</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300">
+                            <li>玩家击败玩家可获得心物品</li>
+                            <li>失败者永久扣除最大生命值</li>
+                            <li>怪物击败玩家也会获得强化</li>
+                            <li>幽灵状态的特殊规则</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-900 bg-opacity-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-2">注意事项</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300">
+                            <li>生命值扣除是永久的</li>
+                            <li>幽灵状态有特殊限制</li>
+                            <li>可以通过特定方式恢复</li>
+                            <li>系统会自动检测状态</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PVP规则 -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="feature-card bg-gray-800 p-6 border-red-500">
+                    <h3 class="text-xl font-semibold text-red-400 mb-4">玩家 vs 玩家</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-400 mb-2">获胜者奖励</h4>
+                            <p class="text-gray-300">获得1颗心物品（可在背包中使用）</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-red-400 mb-2">失败者惩罚</h4>
+                            <p class="text-gray-300">永久扣除2点最大生命值</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-yellow-500">
+                            <h4 class="font-semibold text-yellow-400 mb-2">特殊情况</h4>
+                            <p class="text-gray-300">击败只剩1颗心的玩家会受到惩罚：扣除半颗心并被踢出游戏</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card bg-gray-800 p-6 border-blue-500">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-4">玩家 vs 怪物</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-400 mb-2">怪物强化</h4>
+                            <p class="text-gray-300">击败玩家的怪物获得2点最大生命值上限，血量回满</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-red-400 mb-2">玩家惩罚</h4>
+                            <p class="text-gray-300">扣除2点最大生命值，直到标记怪物死亡</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-green-500">
+                            <h4 class="font-semibold text-green-400 mb-2">怪物标记</h4>
+                            <p class="text-gray-300">被标记的怪物会发光，不会被刷新，死亡时掉落心物品</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 特殊情况说明 -->
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-500 mb-8">
+                <h3 class="text-xl font-semibold text-yellow-400 mb-4">特殊情况说明</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-red-400 mb-2">只剩1颗心的玩家</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>被怪物击败：不获得生命值，玩家不扣除生命值</li>
+                            <li>被玩家击败：攻击者没有什么事情</li>
+                            <li>被击败的玩家进入幽灵状态</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-purple-400 mb-2">被标记的怪物</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>发光效果，不会被游戏刷新</li>
+                            <li>任何方式死亡都会掉落心物品</li>
+                            <li>掉落数量 = 杀死玩家数量（不包括只剩1颗心的）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 幽灵系统 -->
+    <section id="ghost-system" class="py-16 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-400">
+                <i class="fas fa-ghost mr-3"></i>幽灵系统
+            </h2>
+
+            <!-- 成为幽灵 -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="feature-card bg-gray-700 p-6 border-purple-500">
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">成为幽灵的条件</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <div class="flex items-start">
+                            <i class="fas fa-skull text-red-400 mt-1 mr-3"></i>
+                            <span>被玩家击败时只剩1颗心</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-ban text-yellow-400 mt-1 mr-3"></i>
+                            <span>攻击者被扣除半颗心并踢出游戏</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-blue-400 mt-1 mr-3"></i>
+                            <span>重新加入游戏时显示随机提示信息</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card bg-gray-700 p-6 border-green-500">
+                    <h3 class="text-xl font-semibold text-green-400 mb-4">幽灵状态特性</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <div class="flex items-start">
+                            <i class="fas fa-heart text-red-400 mt-1 mr-3"></i>
+                            <span>最大生命值：半颗心</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-eye-slash text-purple-400 mt-1 mr-3"></i>
+                            <span>永久隐身（无粒子效果）</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-alt text-blue-400 mt-1 mr-3"></i>
+                            <span>冒险模式，抗性提升255</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 幽灵能力 -->
+            <div class="bg-gray-700 p-6 rounded-xl mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">幽灵的特殊能力</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-green-400 mb-3">半径6格效果</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><span class="text-blue-400">亡灵生物</span>：获得速度I效果</li>
+                            <li><span class="text-red-400">玩家</span>：获得失明效果</li>
+                            <li><span class="text-yellow-400">普通生物</span>：获得虚弱效果</li>
+                            <li><span class="text-purple-400">幽灵自身</span>：显示灵魂沙粒子</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-yellow-400 mb-3">环境影响</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><span class="text-red-400">白天</span>：失明、缓慢（有方块遮挡时取消）</li>
+                            <li><span class="text-blue-400">夜晚</span>：夜视、速度效果</li>
+                            <li><span class="text-green-400">亮度>7</span>：像末影人怕水一样传送</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 幽灵限制 -->
+            <div class="bg-gray-700 p-6 rounded-xl mb-8">
+                <h3 class="text-xl font-semibold text-red-400 mb-4">幽灵的限制</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-yellow-400 mb-3">无法执行的操作</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>所有指令对幽灵无效（如 /tpa）</li>
+                            <li>不能拿起牛奶和蜂蜜瓶（自动丢弃）</li>
+                            <li>不会在玩家列表显示</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-green-400 mb-3">免疫效果</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>不会饿死或摔死</li>
+                            <li>怪物不会主动攻击</li>
+                            <li>自然死亡不扣除生命值</li>
+                            <li>持续检测状态完整性</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 恢复方法 -->
+            <div class="bg-gray-700 p-6 rounded-xl border-l-4 border-green-500">
+                <h3 class="text-xl font-semibold text-green-400 mb-4">恢复正常的方法</h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-600 p-4 rounded-lg">
+                        <h4 class="font-semibold text-yellow-400 mb-2">恢复条件</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>幽灵主动寻找其他玩家帮助</li>
+                            <li>获得其他玩家给予的1颗心</li>
+                            <li>或者收集5000点经验值使用指令 <code class="bg-gray-700 px-2 py-1 rounded">/life add max</code></li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-600 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-400 mb-2">恢复流程</h4>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                            <li>检测到幽灵拥有半颗心以上</li>
+                            <li>自动踢出游戏并显示提示</li>
+                            <li>重新加入游戏完成恢复</li>
+                            <li>显示随机重生祝贺信息</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 指令帮助区域 -->
     <section id="commands" class="py-16 bg-gray-900">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-green-400 border-b border-gray-700 pb-2">
+            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">
                 <i class="fas fa-terminal mr-3"></i>📋 技能插件命令大全
             </h2>
 
@@ -400,6 +611,50 @@
                 </div>
             </div>
 
+            <!-- 生命值管理命令 -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-red-400">❤️ 生命值管理系统</h3>
+                <div class="overflow-x-auto">
+                    <table class="command-table">
+                        <thead>
+                            <tr>
+                                <th>命令</th>
+                                <th>语法</th>
+                                <th>功能说明</th>
+                                <th>消耗经验</th>
+                                <th>冷却时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>/life set</code></td>
+                                <td><code>/life set &lt;生命值&gt;</code></td>
+                                <td>抽取生命值转换为心物品</td>
+                                <td>无</td>
+                                <td>20分钟</td>
+                            </tr>
+                            <tr>
+                                <td><code>/life add max</code></td>
+                                <td><code>/life add max</code></td>
+                                <td>消耗经验获得心物品</td>
+                                <td>5000点</td>
+                                <td>无</td>
+                            </tr>
+                            <tr>
+                                <td><code>/life info</code></td>
+                                <td><code>/life info</code></td>
+                                <td>查看生命值相关信息</td>
+                                <td>无</td>
+                                <td>无</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-blue-500">
+                    <p class="text-blue-300"><strong>心物品效果：</strong>右键使用永久增加2点最大生命值</p>
+                </div>
+            </div>
+
             <!-- 使用提示 -->
             <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-blue-500">
                 <h3 class="text-xl font-bold mb-4 text-blue-300">💡 使用提示</h3>
@@ -413,142 +668,51 @@
         </div>
     </section>
 
-    <!-- 其他帮助内容区域 -->
-    <section class="py-16 bg-gray-800">
-        <div class="max-w-6xl mx-auto px-4">
-            <!-- 加入服务器 -->
-            <div id="joining" class="mb-16">
-                <h2 class="text-3xl font-bold mb-8 text-green-400 border-b border-gray-700 pb-2">
-                    <i class="fas fa-door-open mr-3"></i>加入服务器
-                </h2>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="help-category bg-gray-700 p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold mb-4 text-blue-400">Java版加入方法</h3>
-                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                            <li>打开Minecraft Java版</li>
-                            <li>点击"多人游戏"</li>
-                            <li>点击"添加服务器"</li>
-                            <li>在服务器地址中输入：<span class="server-address">bffc302bbe83.ofalias.com</span></li>
-                            <li>在端口中输入：<span class="server-address">64533</span></li>
-                            <li>点击"完成"并选择服务器加入</li>
-                        </ol>
-                        <div class="mt-6">
-                            <a href="minecraft://?addExternalServer=bffc302bbe83.ofalias.com:64533" 
-                               class="minecraft-btn text-white py-3 px-6 rounded-lg font-semibold transition inline-flex items-center">
-                                <i class="fas fa-plus-circle mr-2"></i>
-                                一键添加Java版服务器
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="help-category bg-gray-700 p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold mb-4 text-purple-400">基岩版加入方法</h3>
-                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                            <li>打开Minecraft基岩版</li>
-                            <li>点击"游戏"并选择"服务器"标签</li>
-                            <li>向下滚动并点击"添加服务器"</li>
-                            <li>在服务器地址中输入：<span class="server-address">bffc302bbe83.ofalias.com</span></li>
-                            <li>在端口中输入：<span class="server-address">23047</span></li>
-                            <li>点击"保存"并选择服务器加入</li>
-                        </ol>
-                        <div class="mt-6">
-                            <a href="minecraft://?addExternalServer=bffc302bbe83.ofalias.com:23047" 
-                               class="minecraft-btn text-white py-3 px-6 rounded-lg font-semibold transition inline-flex items-center">
-                                <i class="fas fa-plus-circle mr-2"></i>
-                                一键添加基岩版服务器
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 服务器规则 -->
-            <div id="rules" class="mb-16">
-                <h2 class="text-3xl font-bold mb-8 text-yellow-400 border-b border-gray-700 pb-2">
-                    <i class="fas fa-gavel mr-3"></i>服务器规则
-                </h2>
-                
-                <div class="space-y-6">
-                    <div class="help-category bg-gray-700 p-6 rounded-xl">
-                        <div class="flex items-start">
-                            <i class="fas fa-shield-alt text-green-400 text-2xl mt-1 mr-4"></i>
-                            <div>
-                                <h3 class="text-xl font-semibold mb-2 text-green-400">公平游戏</h3>
-                                <p class="text-gray-300">本服务器已部署反矿透系统，请各位玩家自觉遵守游戏规则，共同维护公平的游戏环境。任何形式的作弊行为都将受到处罚。</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="help-category bg-gray-700 p-6 rounded-xl">
-                        <div class="flex items-start">
-                            <i class="fas fa-ban text-red-400 text-2xl mt-1 mr-4"></i>
-                            <div>
-                                <h3 class="text-xl font-semibold mb-2 text-red-400">禁止外挂</h3>
-                                <p class="text-gray-300">我们强烈不建议也不允许使用任何形式的外挂程序。请勿使用、宣传或分享外挂相关信息，一经发现将严肃处理。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 常见问题 -->
-            <div id="faq">
-                <h2 class="text-3xl font-bold mb-8 text-purple-400 border-b border-gray-700 pb-2">
-                    <i class="fas fa-question-circle mr-3"></i>常见问题
-                </h2>
-                
-                <div class="space-y-4">
-                    <div class="faq-item bg-gray-700 p-6 rounded-xl">
-                        <div class="faq-question flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-200">服务器支持哪些Minecraft版本？</h3>
-                            <i class="fas fa-chevron-down text-gray-400"></i>
-                        </div>
-                        <div class="faq-answer mt-4 text-gray-300">
-                            <p>Java版服务器支持1.21.10版本，基岩版服务器支持最新版本。请确保您的游戏客户端版本与服务器匹配。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item bg-gray-700 p-6 rounded-xl">
-                        <div class="faq-question flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-200">经验果和经验书有什么区别？</h3>
-                            <i class="fas fa-chevron-down text-gray-400"></i>
-                        </div>
-                        <div class="faq-answer mt-4 text-gray-300">
-                            <p>经验果会随时间腐烂，适合短期存储；经验书可以长期保存经验，但需要合成不同等级的经验书来增加存储容量。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系我们 -->
-    <section id="contact" class="py-16 bg-gray-900">
+    <!-- 常见问题 -->
+    <section id="faq" class="py-16 bg-gray-800">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-green-400">📧 联系我们</h2>
+            <h2 class="text-3xl font-bold text-center mb-12 text-purple-400">
+                <i class="fas fa-question-circle mr-3"></i>常见问题
+            </h2>
             
-            <div class="bg-gray-700 p-8 rounded-xl">
-                <div class="text-center mb-8">
-                    <i class="fas fa-envelope text-5xl text-green-400 mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-2">需要更多帮助？</h3>
-                    <p class="text-gray-300">如果您的问题在这里没有找到答案，欢迎通过以下方式联系我们</p>
+            <div class="space-y-4">
+                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                    <div class="faq-question flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-gray-200">如何避免成为幽灵？</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-300">
+                        <p>保持生命值在2颗心以上，避免在低生命值时参与PVP战斗。及时使用治疗物品和小心管理你的生命值。</p>
+                    </div>
                 </div>
                 
-                <div class="space-y-6">
-                    <div class="flex items-center justify-center">
-                        <i class="fas fa-at text-green-400 text-2xl mr-4"></i>
-                        <div>
-                            <h4 class="text-xl font-semibold text-green-400">邮箱联系</h4>
-                            <p class="text-gray-300">3653615194@qq.com</p>
-                        </div>
+                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                    <div class="faq-question flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-gray-200">被标记的怪物有什么特征？</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
                     </div>
-                    
-                    <div class="text-center mt-8">
-                        <a href="mailto:3653615194@qq.com" class="minecraft-btn text-white py-3 px-8 rounded-lg font-semibold inline-flex items-center">
-                            <i class="fas fa-paper-plane mr-2"></i>
-                            发送邮件
-                        </a>
+                    <div class="faq-answer mt-4 text-gray-300">
+                        <p>被标记的怪物会发出明显的发光效果，不会被游戏自然刷新。击败它们可以回收之前损失的生命值。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                    <div class="faq-question flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-gray-200">幽灵状态如何恢复？</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-300">
+                        <p>需要其他玩家给予1颗心，或者收集5000点经验值并使用<code>/life add max</code>指令。完成后会被踢出游戏，重新加入即可恢复。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                    <div class="faq-question flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-gray-200">经验果和经验书有什么区别？</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-300">
+                        <p>经验果会随时间腐烂，适合短期存储；经验书可以长期保存经验，但需要合成不同等级的经验书来增加存储容量。</p>
                     </div>
                 </div>
             </div>
@@ -556,7 +720,7 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-800 text-gray-400 py-8 border-t border-gray-700">
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <p>&copy; 2025 nitaishi.top - Minecraft服务器帮助中心</p>
             <p class="mt-2">服务器地址: bffc302bbe83.ofalias.com</p>
