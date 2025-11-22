@@ -79,6 +79,42 @@
         .feature-card:hover {
             transform: translateX(5px);
         }
+        .crafting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            max-width: 150px;
+            margin: 0 auto;
+        }
+        .crafting-slot {
+            width: 40px;
+            height: 40px;
+            background-color: #8B8B8B;
+            border: 2px solid #5D5D5D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+        }
+        .crafting-slot.air {
+            background-color: transparent;
+            border: 2px dashed #5D5D5D;
+        }
+        .crafting-slot.book {
+            background-color: #A52A2A;
+        }
+        .crafting-slot.diamond {
+            background-color: #4FEBFE;
+            color: black;
+        }
+        .crafting-slot.ender-pearl {
+            background-color: #0BDA51;
+        }
+        .crafting-slot.gold {
+            background-color: #FFD700;
+            color: black;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
@@ -94,6 +130,7 @@
                 <div class="space-x-6 hidden md:flex">
                     <a href="index.html" class="text-gray-300 hover:text-green-400 transition">返回主页</a>
                     <a href="#commands" class="text-gray-300 hover:text-green-400 transition">指令帮助</a>
+                    <a href="#teleport-book" class="text-gray-300 hover:text-green-400 transition">传送书</a>
                     <a href="#life-system" class="text-gray-300 hover:text-green-400 transition">生命掠夺</a>
                     <a href="#faq" class="text-gray-300 hover:text-green-400 transition">常见问题</a>
                 </div>
@@ -107,6 +144,7 @@
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <a href="index.html" class="block py-2 text-gray-300 hover:text-green-400">返回主页</a>
                 <a href="#commands" class="block py-2 text-gray-300 hover:text-green-400">指令帮助</a>
+                <a href="#teleport-book" class="block py-2 text-gray-300 hover:text-green-400">传送书</a>
                 <a href="#life-system" class="block py-2 text-gray-300 hover:text-green-400">生命掠夺</a>
                 <a href="#faq" class="block py-2 text-gray-300 hover:text-green-400">常见问题</a>
             </div>
@@ -146,6 +184,14 @@
                     <p class="text-gray-400">查看所有可用指令</p>
                 </a>
                 
+                <a href="#teleport-book" class="card-hover bg-gray-700 p-6 rounded-xl border border-blue-600 text-center">
+                    <div class="text-4xl text-blue-400 mb-4">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">传送书</h3>
+                    <p class="text-gray-400">自定义传送系统</p>
+                </a>
+                
                 <a href="#life-system" class="card-hover bg-gray-700 p-6 rounded-xl border border-red-600 text-center">
                     <div class="text-4xl text-red-400 mb-4">
                         <i class="fas fa-heart"></i>
@@ -154,16 +200,8 @@
                     <p class="text-gray-400">生命值管理系统</p>
                 </a>
                 
-                <a href="#ghost-system" class="card-hover bg-gray-700 p-6 rounded-xl border border-purple-600 text-center">
+                <a href="#faq" class="card-hover bg-gray-700 p-6 rounded-xl border border-purple-600 text-center">
                     <div class="text-4xl text-purple-400 mb-4">
-                        <i class="fas fa-ghost"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">幽灵系统</h3>
-                    <p class="text-gray-400">幽灵状态说明</p>
-                </a>
-                
-                <a href="#faq" class="card-hover bg-gray-700 p-6 rounded-xl border border-blue-600 text-center">
-                    <div class="text-4xl text-blue-400 mb-4">
                         <i class="fas fa-question-circle"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">常见问题</h3>
@@ -173,15 +211,152 @@
         </div>
     </section>
 
+    <!-- 传送书系统 -->
+    <section id="teleport-book" class="py-16 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">
+                <i class="fas fa-book mr-3"></i>传送书系统
+            </h2>
+
+            <!-- 物品介绍 -->
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-blue-500 mb-8">
+                <h3 class="text-xl font-semibold text-blue-400 mb-4">物品介绍</h3>
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="flex-shrink-0 bg-gray-700 p-4 rounded-lg border border-blue-500">
+                        <div class="text-6xl text-blue-400">
+                            <i class="fas fa-book"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-white mb-2">传送书</h4>
+                        <p class="text-gray-300 mb-2">一个拥有神秘的传送力量的书，右键可以打开箱子GUI标记玩家脚下的坐标并创建名称。</p>
+                        <div class="flex items-center text-yellow-400">
+                            <i class="fas fa-star mr-1"></i>
+                            <i class="fas fa-star mr-1"></i>
+                            <i class="fas fa-star mr-1"></i>
+                            <i class="fas fa-star mr-1"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="ml-2 text-sm text-gray-400">稀有物品</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 合成配方 -->
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-500 mb-8">
+                <h3 class="text-xl font-semibold text-yellow-400 mb-4">合成配方</h3>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="crafting-grid">
+                            <div class="crafting-slot air">0</div>
+                            <div class="crafting-slot book">1</div>
+                            <div class="crafting-slot air">0</div>
+                            <div class="crafting-slot diamond">2</div>
+                            <div class="crafting-slot ender-pearl">3</div>
+                            <div class="crafting-slot diamond">2</div>
+                            <div class="crafting-slot air">0</div>
+                            <div class="crafting-slot gold">4</div>
+                            <div class="crafting-slot air">0</div>
+                        </div>
+                        <p class="text-center text-gray-300 mt-2">工作台合成配方</p>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-yellow-300 mb-2">材料说明</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><span class="text-blue-400">1 - 书</span>：基础材料</li>
+                            <li><span class="text-cyan-400">2 - 钻石</span>：提供能量稳定性</li>
+                            <li><span class="text-green-400">3 - 末影珍珠</span>：传送核心材料</li>
+                            <li><span class="text-yellow-400">4 - 黄金</span>：能量传导材料</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 使用方法 -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="feature-card bg-gray-800 p-6 border-green-500">
+                    <h3 class="text-xl font-semibold text-green-400 mb-4">创建传送点</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-400 mb-2">步骤</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>手持传送书右键打开GUI</li>
+                                <li>点击空槽位创建新传送点</li>
+                                <li>输入传送点名称</li>
+                                <li>消耗30点经验完成标记</li>
+                            </ol>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-yellow-400 mb-2">限制</h4>
+                            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                                <li>每个传送书最多存储30个传送点</li>
+                                <li>传送点名称不能重复</li>
+                                <li>只能标记当前位置</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card bg-gray-800 p-6 border-purple-500">
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">使用传送点</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-400 mb-2">传送消耗</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300">
+                                <li><span class="text-green-400">300格内</span>：1颗末影珍珠 + 50点经验</li>
+                                <li><span class="text-yellow-400">每超过300格</span>：额外+1颗末影珍珠</li>
+                                <li><span class="text-red-400">跨纬度</span>：额外+1颗末影之眼 + 30点经验</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-400 mb-2">传送流程</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>手持传送书右键打开GUI</li>
+                                <li>选择目标传送点</li>
+                                <li>确认传送消耗</li>
+                                <li>完成传送</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 管理功能 -->
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-red-500">
+                <h3 class="text-xl font-semibold text-red-400 mb-4">管理功能</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-yellow-400 mb-3">删除传送点</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>在传送书GUI中点击已有传送点</li>
+                            <li>选择删除选项</li>
+                            <li>确认删除操作</li>
+                            <li>不返还创建时消耗的经验</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-green-400 mb-3">隐私保护</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>传送点完全私有</li>
+                            <li>其他玩家无法查看你的传送点</li>
+                            <li>无法共享传送点给其他玩家</li>
+                            <li>每个传送书独立存储</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 生命掠夺系统 -->
-    <section id="life-system" class="py-16 bg-gray-900">
+    <section id="life-system" class="py-16 bg-gray-800">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-red-400">
                 <i class="fas fa-heart-crack mr-3"></i>生命掠夺系统
             </h2>
 
             <!-- 系统概述 -->
-            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-red-500 mb-8">
+            <div class="bg-gray-700 p-6 rounded-xl border-l-4 border-red-500 mb-8">
                 <h3 class="text-xl font-semibold text-red-400 mb-4">系统概述</h3>
                 <p class="text-gray-300 mb-4">生命掠夺系统是一个独特的PVP机制，让玩家之间的战斗更加刺激，同时也增加了生存的挑战性。</p>
                 <div class="grid md:grid-cols-2 gap-4">
@@ -208,36 +383,36 @@
 
             <!-- PVP规则 -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="feature-card bg-gray-800 p-6 border-red-500">
+                <div class="feature-card bg-gray-700 p-6 border-red-500">
                     <h3 class="text-xl font-semibold text-red-400 mb-4">玩家 vs 玩家</h3>
                     <div class="space-y-4">
-                        <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="bg-gray-600 p-4 rounded-lg">
                             <h4 class="font-semibold text-green-400 mb-2">获胜者奖励</h4>
                             <p class="text-gray-300">获得1颗心物品（可在背包中使用）</p>
                         </div>
-                        <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="bg-gray-600 p-4 rounded-lg">
                             <h4 class="font-semibold text-red-400 mb-2">失败者惩罚</h4>
                             <p class="text-gray-300">永久扣除2点最大生命值</p>
                         </div>
-                        <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-yellow-500">
+                        <div class="bg-gray-600 p-4 rounded-lg border-l-4 border-yellow-500">
                             <h4 class="font-semibold text-yellow-400 mb-2">特殊情况</h4>
                             <p class="text-gray-300">击败只剩1颗心的玩家会受到惩罚：扣除半颗心并被踢出游戏</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="feature-card bg-gray-800 p-6 border-blue-500">
+                <div class="feature-card bg-gray-700 p-6 border-blue-500">
                     <h3 class="text-xl font-semibold text-blue-400 mb-4">玩家 vs 怪物</h3>
                     <div class="space-y-4">
-                        <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="bg-gray-600 p-4 rounded-lg">
                             <h4 class="font-semibold text-blue-400 mb-2">怪物强化</h4>
                             <p class="text-gray-300">击败玩家的怪物获得2点最大生命值上限，血量回满</p>
                         </div>
-                        <div class="bg-gray-700 p-4 rounded-lg">
+                        <div class="bg-gray-600 p-4 rounded-lg">
                             <h4 class="font-semibold text-red-400 mb-2">玩家惩罚</h4>
                             <p class="text-gray-300">扣除2点最大生命值，直到标记怪物死亡</p>
                         </div>
-                        <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-green-500">
+                        <div class="bg-gray-600 p-4 rounded-lg border-l-4 border-green-500">
                             <h4 class="font-semibold text-green-400 mb-2">怪物标记</h4>
                             <p class="text-gray-300">被标记的怪物会发光，不会被刷新，死亡时掉落心物品</p>
                         </div>
@@ -246,7 +421,7 @@
             </div>
 
             <!-- 特殊情况说明 -->
-            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-500 mb-8">
+            <div class="bg-gray-700 p-6 rounded-xl border-l-4 border-yellow-500 mb-8">
                 <h3 class="text-xl font-semibold text-yellow-400 mb-4">特殊情况说明</h3>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
@@ -271,7 +446,7 @@
     </section>
 
     <!-- 幽灵系统 -->
-    <section id="ghost-system" class="py-16 bg-gray-800">
+    <section id="ghost-system" class="py-16 bg-gray-900">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-purple-400">
                 <i class="fas fa-ghost mr-3"></i>幽灵系统
@@ -279,7 +454,7 @@
 
             <!-- 成为幽灵 -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="feature-card bg-gray-700 p-6 border-purple-500">
+                <div class="feature-card bg-gray-800 p-6 border-purple-500">
                     <h3 class="text-xl font-semibold text-purple-400 mb-4">成为幽灵的条件</h3>
                     <div class="space-y-3 text-gray-300">
                         <div class="flex items-start">
@@ -297,7 +472,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card bg-gray-700 p-6 border-green-500">
+                <div class="feature-card bg-gray-800 p-6 border-green-500">
                     <h3 class="text-xl font-semibold text-green-400 mb-4">幽灵状态特性</h3>
                     <div class="space-y-3 text-gray-300">
                         <div class="flex items-start">
@@ -317,7 +492,7 @@
             </div>
 
             <!-- 幽灵能力 -->
-            <div class="bg-gray-700 p-6 rounded-xl mb-8">
+            <div class="bg-gray-800 p-6 rounded-xl mb-8">
                 <h3 class="text-xl font-semibold text-blue-400 mb-4">幽灵的特殊能力</h3>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
@@ -341,7 +516,7 @@
             </div>
 
             <!-- 幽灵限制 -->
-            <div class="bg-gray-700 p-6 rounded-xl mb-8">
+            <div class="bg-gray-800 p-6 rounded-xl mb-8">
                 <h3 class="text-xl font-semibold text-red-400 mb-4">幽灵的限制</h3>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
@@ -365,18 +540,18 @@
             </div>
 
             <!-- 恢复方法 -->
-            <div class="bg-gray-700 p-6 rounded-xl border-l-4 border-green-500">
+            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-green-500">
                 <h3 class="text-xl font-semibold text-green-400 mb-4">恢复正常的方法</h3>
                 <div class="space-y-4">
-                    <div class="bg-gray-600 p-4 rounded-lg">
+                    <div class="bg-gray-700 p-4 rounded-lg">
                         <h4 class="font-semibold text-yellow-400 mb-2">恢复条件</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-300">
                             <li>幽灵主动寻找其他玩家帮助</li>
                             <li>获得其他玩家给予的1颗心</li>
-                            <li>或者收集5000点经验值使用指令 <code class="bg-gray-700 px-2 py-1 rounded">/life add max</code></li>
+                            <li>或者收集5000点经验值使用指令 <code class="bg-gray-600 px-2 py-1 rounded">/life add max</code></li>
                         </ul>
                     </div>
-                    <div class="bg-gray-600 p-4 rounded-lg">
+                    <div class="bg-gray-700 p-4 rounded-lg">
                         <h4 class="font-semibold text-blue-400 mb-2">恢复流程</h4>
                         <ol class="list-decimal list-inside space-y-2 text-gray-300">
                             <li>检测到幽灵拥有半颗心以上</li>
@@ -391,7 +566,7 @@
     </section>
 
     <!-- 指令帮助区域 -->
-    <section id="commands" class="py-16 bg-gray-900">
+    <section id="commands" class="py-16 bg-gray-800">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-green-400">
                 <i class="fas fa-terminal mr-3"></i>📋 技能插件命令大全
@@ -470,7 +645,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-yellow-500">
+                <div class="mt-4 p-4 bg-gray-700 rounded-lg border-l-4 border-yellow-500">
                     <p class="text-yellow-300"><strong>注意：</strong>如果超时60秒或者对方拒绝传送，发起者将返还15点经验值。</p>
                 </div>
             </div>
@@ -500,7 +675,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-green-500">
+                <div class="mt-4 p-4 bg-gray-700 rounded-lg border-l-4 border-green-500">
                     <p class="text-green-300"><strong>提示：</strong>每次死亡后会弹出提示询问是否传送到死亡点。</p>
                 </div>
             </div>
@@ -533,7 +708,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-red-500">
+                <div class="mt-4 p-4 bg-gray-700 rounded-lg border-l-4 border-red-500">
                     <p class="text-red-300"><strong>重要：</strong>经验果会随时间腐烂，每20分钟减少10点经验。创建经验果不能少于10点经验。</p>
                 </div>
 
@@ -650,13 +825,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-4 p-4 bg-gray-800 rounded-lg border-l-4 border-blue-500">
+                <div class="mt-4 p-4 bg-gray-700 rounded-lg border-l-4 border-blue-500">
                     <p class="text-blue-300"><strong>心物品效果：</strong>右键使用永久增加2点最大生命值</p>
                 </div>
             </div>
 
             <!-- 使用提示 -->
-            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-blue-500">
+            <div class="bg-gray-700 p-6 rounded-xl border-l-4 border-blue-500">
                 <h3 class="text-xl font-bold mb-4 text-blue-300">💡 使用提示</h3>
                 <ul class="list-disc list-inside space-y-2 text-gray-300">
                     <li><strong>所有传送命令</strong>都会播放粒子效果和音效，提供更好的视觉反馈</li>
@@ -669,14 +844,14 @@
     </section>
 
     <!-- 常见问题 -->
-    <section id="faq" class="py-16 bg-gray-800">
+    <section id="faq" class="py-16 bg-gray-900">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-purple-400">
                 <i class="fas fa-question-circle mr-3"></i>常见问题
             </h2>
             
             <div class="space-y-4">
-                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                <div class="faq-item bg-gray-800 p-6 rounded-xl">
                     <div class="faq-question flex justify-between items-center">
                         <h3 class="text-xl font-semibold text-gray-200">如何避免成为幽灵？</h3>
                         <i class="fas fa-chevron-down text-gray-400"></i>
@@ -686,7 +861,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                <div class="faq-item bg-gray-800 p-6 rounded-xl">
                     <div class="faq-question flex justify-between items-center">
                         <h3 class="text-xl font-semibold text-gray-200">被标记的怪物有什么特征？</h3>
                         <i class="fas fa-chevron-down text-gray-400"></i>
@@ -696,7 +871,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                <div class="faq-item bg-gray-800 p-6 rounded-xl">
                     <div class="faq-question flex justify-between items-center">
                         <h3 class="text-xl font-semibold text-gray-200">幽灵状态如何恢复？</h3>
                         <i class="fas fa-chevron-down text-gray-400"></i>
@@ -706,13 +881,23 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-gray-700 p-6 rounded-xl">
+                <div class="faq-item bg-gray-800 p-6 rounded-xl">
                     <div class="faq-question flex justify-between items-center">
                         <h3 class="text-xl font-semibold text-gray-200">经验果和经验书有什么区别？</h3>
                         <i class="fas fa-chevron-down text-gray-400"></i>
                     </div>
                     <div class="faq-answer mt-4 text-gray-300">
                         <p>经验果会随时间腐烂，适合短期存储；经验书可以长期保存经验，但需要合成不同等级的经验书来增加存储容量。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-gray-800 p-6 rounded-xl">
+                    <div class="faq-question flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-gray-200">传送书可以共享传送点吗？</h3>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-300">
+                        <p>不可以。传送书是完全私有的，每个玩家的传送点都是独立的，无法与其他玩家共享。每个传送书最多可以存储30个不同的传送点。</p>
                     </div>
                 </div>
             </div>
