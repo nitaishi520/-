@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器控制面板 - nitaishi.top</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a7d34;
+            --secondary-color: #306230;
+            --danger-color: #dc2626;
+            --warning-color: #f59e0b;
+            --success-color: #10b981;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .server-status {
+            border-radius: 10px;
+            padding: 8px 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-online { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-offline { background: rgba(220, 38, 38, 0.2); color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.3); }
+        .status-starting { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+        
+        .dashboard-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dashboard-card h3 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            color: #94a3b8;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-start { background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%); color: white; }
+        .btn-stop { background: linear-gradient(135deg, var(--danger-color) 0%, #b91c1c 100%); color: white; }
+        .btn-restart { background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%); color: white; }
+        .btn-backup { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
+        
+        .btn-start:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(16, 185, 129, 0.5); }
+        .btn-stop:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(220, 38, 38, 0.5); }
+        .btn-restart:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(245, 158, 11, 0.5); }
+        .btn-backup:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(139, 92, 246, 0.5); }
+        
+        .console-output {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        .console-line {
+            margin: 4px 0;
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .log-info { color: #60a5fa; }
+        .log-warn { color: #fbbf24; }
+        .log-error { color: #f87171; }
+        .log-success { color: #34d399; }
+        .log-debug { color: #a78bfa; }
+        
+        .player-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .player-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            margin: 4px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--success-color);
+            transition: all 0.2s;
+        }
+        
+        .player-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .stat-cpu { color: #60a5fa; }
+        .stat-mem { color: #34d399; }
+        .stat-players { color: #fbbf24; }
+        .stat-uptime { color: #a78bfa; }
+        
+        .command-input {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            padding: 12px 16px;
+            font-family: 'Consolas', monospace;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        
+        .command-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(58, 125, 52, 0.2);
+        }
+        
+        .tab-button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: #94a3b8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+        }
+        
+        .tab-button.active {
+            background: rgba(58, 125, 52, 0.2);
+            color: #10b981;
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+            max-width: 400px;
+        }
+        
+        .toast-success { background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%); }
+        .toast-error { background: linear-gradient(135deg, var(--danger-color) 0%, #b91c1c 100%); }
+        .toast-warning { background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%); }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(100%); }
+        }
+        
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .console-output { height: 300px; }
+            .stat-value { font-size: 2rem; }
+            .tab-button { padding: 10px 16px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 登录检查 -->
+    <div id="loginCheck"></div>
+    
+    <!-- 头部 -->
+    <header class="admin-header py-4 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-cogs text-2xl text-green-400"></i>
+                        <div>
+                            <h1 class="text-xl font-bold">服务器控制面板</h1>
+                            <p class="text-sm text-gray-400">nitaishi.top</p>
+                        </div>
+                    </div>
+                    
+                    <div id="serverStatus" class="server-status status-offline">
+                        <i class="fas fa-circle"></i>
+                        <span>服务器离线</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:block text-sm text-gray-400">
+                        <i class="fas fa-user-shield mr-2"></i>
+                        管理员模式
+                    </div>
+                    <button onclick="logoutAdmin()" class="control-btn bg-gray-700 hover:bg-gray-600 text-white">
+                        <i class="fas fa-sign-out-alt"></i>
+                        退出登录
+                    </button>
+                    <a href="/" class="control-btn bg-blue-600 hover:bg-blue-500 text-white">
+                        <i class="fas fa-home"></i>
+                        返回主页
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 选项卡 -->
+            <div class="mt-6 flex overflow-x-auto">
+                <button class="tab-button active" onclick="switchTab('dashboard')">
+                    <i class="fas fa-tachometer-alt mr-2"></i>
+                    仪表板
+                </button>
+                <button class="tab-button" onclick="switchTab('console')">
+                    <i class="fas fa-terminal mr-2"></i>
+                    控制台
+                </button>
+                <button class="tab-button" onclick="switchTab('players')">
+                    <i class="fas fa-users mr-2"></i>
+                    玩家管理
+                </button>
+                <button class="tab-button" onclick="switchTab('settings')">
+                    <i class="fas fa-cog mr-2"></i>
+                    服务器设置
+                </button>
+                <button class="tab-button" onclick="switchTab('backup')">
+                    <i class="fas fa-database mr-2"></i>
+                    备份管理
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- 仪表板 -->
+        <div id="dashboard" class="tab-content active">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="stat-card">
+                    <i class="fas fa-microchip text-3xl text-blue-400"></i>
+                    <div class="stat-value stat-cpu" id="cpuUsage">--%</div>
+                    <div class="text-gray-400">CPU使用率</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-memory text-3xl text-green-400"></i>
+                    <div class="stat-value stat-mem" id="memoryUsage">-- MB</div>
+                    <div class="text-gray-400">内存使用</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-users text-3xl text-yellow-400"></i>
+                    <div class="stat-value stat-players" id="playerCount">0/20</div>
+                    <div class="text-gray-400">在线玩家</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-clock text-3xl text-purple-400"></i>
+                    <div class="stat-value stat-uptime" id="uptime">00:00:00</div>
+                    <div class="text-gray-400">运行时间</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 快速控制 -->
+                <div class="dashboard-card p-6">
+                    <h3 class="text-lg font-semibold flex items-center gap-2">
+                        <i class="fas fa-gamepad text-green-400"></i>
+                        快速控制
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button id="startBtn" class="control-btn btn-start" onclick="controlServer('start')">
+                                <i class="fas fa-play"></i>
+                                启动服务器
+                            </button>
+                            <button id="stopBtn" class="control-btn btn-stop" onclick="controlServer('stop')" disabled>
+                                <i class="fas fa-stop"></i>
+                                停止服务器
+                            </button>
+                            <button id="restartBtn" class="control-btn btn-restart" onclick="controlServer('restart')" disabled>
+                                <i class="fas fa-redo"></i>
+                                重启服务器
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button id="backupBtn" class="control-btn btn-backup" onclick="createBackup()">
+                                <i class="fas fa-save"></i>
+                                创建备份
+                            </button>
+                            <button class="control-btn bg-gray-700 hover:bg-gray-600 text-white" onclick="switchTab('console')">
+                                <i class="fas fa-terminal"></i>
+                                打开控制台
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 服务器信息 -->
+                <div class="dashboard-card p-6">
+                    <h3 class="text-lg font-semibold flex items-center gap-2">
+                        <i class="fas fa-server text-blue-400"></i>
+                        服务器信息
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-gray-400 text-sm">Java版地址</label>
+                                <div class="mt-1 p-2 bg-gray-800 rounded">cfc8522bc8db.ofalias.net</div>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">基岩版地址</label>
+                                <div class="mt-1 p-2 bg-gray-800 rounded">bffc302bbe83.ofalias.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-gray-400 text-sm">端口</label>
+                                <div class="mt-1 p-2 bg-gray-800 rounded">36118 / 23047</div>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">版本</label>
+                                <div class="mt-1 p-2 bg-gray-800 rounded">1.21.10</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="text-gray-400 text-sm">启动次数</label>
+                            <div class="mt-1 p-2 bg-gray-800 rounded" id="startCount">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 控制台 -->
+        <div id="console" class="tab-content">
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-semibold flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-terminal text-green-400"></i>
+                        服务器控制台
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="clearConsole()" class="text-sm text-gray-400 hover:text-white">
+                            <i class="fas fa-trash mr-1"></i> 清空
+                        </button>
+                        <button onclick="refreshConsole()" class="text-sm text-gray-400 hover:text-white">
+                            <i class="fas fa-sync mr-1"></i> 刷新
+                        </button>
+                        <label class="text-sm text-gray-400 hover:text-white cursor-pointer">
+                            <input type="checkbox" id="autoScroll" checked class="mr-1">
+                            自动滚动
+                        </label>
+                    </div>
+                </h3>
+                
+                <div class="console-output" id="consoleOutput">
+                    <div class="console-line log-info">控制台已连接...</div>
+                    <div class="console-line log-info">等待服务器输出...</div>
+                </div>
+                
+                <div class="mt-4 flex gap-2">
+                    <input type="text" id="commandInput" class="command-input flex-1" 
+                           placeholder="输入Minecraft服务器命令（例如：say hello）按Enter发送" 
+                           onkeypress="if(event.key === 'Enter') sendCommand()">
+                    <button onclick="sendCommand()" class="control-btn bg-green-600 hover:bg-green-500 text-white px-6">
+                        <i class="fas fa-paper-plane"></i>
+                        发送
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 玩家管理 -->
+        <div id="players" class="tab-content">
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-semibold flex items-center gap-2 mb-6">
+                    <i class="fas fa-users text-blue-400"></i>
+                    在线玩家管理
+                </h3>
+                
+                <div id="playerList" class="player-list">
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-user-slash text-3xl mb-3"></i>
+                        <p>暂无在线玩家</p>
+                        <p class="text-sm mt-2">当玩家加入服务器时，这里会显示玩家列表</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-gray-800 rounded-lg">
+                    <h4 class="font-semibold mb-3 text-green-400">玩家操作</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <input type="text" id="kickPlayerInput" placeholder="玩家名称" class="w-full p-2 bg-gray-700 rounded">
+                        </div>
+                        <button onclick="kickPlayer()" class="control-btn bg-red-600 hover:bg-red-500 text-white">
+                            <i class="fas fa-user-slash"></i>
+                            踢出玩家
+                        </button>
+                        <button onclick="banPlayer()" class="control-btn bg-red-800 hover:bg-red-700 text-white">
+                            <i class="fas fa-ban"></i>
+                            封禁玩家
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 服务器设置 -->
+        <div id="settings" class="tab-content">
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-semibold flex items-center gap-2 mb-6">
+                    <i class="fas fa-cog text-yellow-400"></i>
+                    服务器设置
+                </h3>
+                
+                <div class="space-y-6">
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <h4 class="font-semibold mb-4 text-green-400">服务器属性</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">最大玩家数</label>
+                                <input type="number" id="maxPlayers" value="20" min="1" max="100" class="w-full p-2 bg-gray-700 border border-gray-600 rounded">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">游戏模式</label>
+                                <select id="gameMode" class="w-full p-2 bg-gray-700 border border-gray-600 rounded">
+                                    <option value="survival">生存模式</option>
+                                    <option value="creative">创造模式</option>
+                                    <option value="adventure">冒险模式</option>
+                                    <option value="spectator">旁观模式</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">难度</label>
+                                <select id="difficulty" class="w-full p-2 bg-gray-700 border border-gray-600 rounded">
+                                    <option value="peaceful">和平</option>
+                                    <option value="easy">简单</option>
+                                    <option value="normal">普通</option>
+                                    <option value="hard">困难</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">视距</label>
+                                <input type="number" id="viewDistance" value="10" min="5" max="32" class="w-full p-2 bg-gray-700 border border-gray-600 rounded">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <h4 class="font-semibold mb-4 text-blue-400">系统设置</h4>
+                        <div class="space-y-4">
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" id="autoStart" checked class="w-4 h-4">
+                                <span>服务器启动时自动启动Minecraft</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" id="autoBackup" checked class="w-4 h-4">
+                                <span>启用自动备份（每6小时）</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" id="maintenanceMode" class="w-4 h-4">
+                                <span>启用维护模式（阻止新玩家加入）</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" id="whitelist" class="w-4 h-4">
+                                <span>启用白名单系统</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right">
+                        <button onclick="saveSettings()" class="control-btn bg-green-600 hover:bg-green-500 text-white px-8">
+                            <i class="fas fa-save mr-2"></i>
+                            保存设置
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 备份管理 -->
+        <div id="backup" class="tab-content">
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-semibold flex items-center gap-2 mb-6">
+                    <i class="fas fa-database text-purple-400"></i>
+                    备份管理
+                </h3>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button onclick="createBackup()" class="control-btn btn-backup">
+                            <i class="fas fa-plus mr-2"></i>
+                            创建新备份
+                        </button>
+                        <button onclick="restoreBackup()" class="control-btn bg-yellow-600 hover:bg-yellow-500 text-white">
+                            <i class="fas fa-history mr-2"></i>
+                            恢复备份
+                        </button>
+                        <button onclick="downloadAllBackups()" class="control-btn bg-blue-600 hover:bg-blue-500 text-white">
+                            <i class="fas fa-download mr-2"></i>
+                            下载所有备份
+                        </button>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <h4 class="font-semibold mb-4">备份列表</h4>
+                        <div id="backupList" class="space-y-3">
+                            <div class="text-center text-gray-500 py-6">
+                                <i class="fas fa-database text-2xl mb-3"></i>
+                                <p>暂无备份</p>
+                                <p class="text-sm mt-2">点击上方按钮创建第一个备份</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 底部信息 -->
+    <footer class="mt-12 py-6 border-t border-gray-800 text-center text-gray-500">
+        <p>服务器管理面板 | nitaishi.top</p>
+        <p class="text-sm mt-2">安全提示：请勿在公共计算机上保持登录状态</p>
+        <p class="text-xs mt-1 text-gray-600">当前时间: <span id="currentTime"></span></p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // 管理员密码
+        const ADMIN_PASSWORD = "fwqnitaishi520";
+        
+        // 服务器状态
+        let serverStatus = 'offline';
+        let uptimeStart = null;
+        let consoleLogs = [];
+        let connectedPlayers = [];
+        let backups = [];
+        
+        // 检查登录状态
+        function checkLogin() {
+            const loggedIn = sessionStorage.getItem('admin_logged_in');
+            const loginTime = sessionStorage.getItem('admin_login_time');
+            
+            if (!loggedIn || !loginTime) {
+                window.location.href = '/';
+                return;
+            }
+            
+            // 检查会话是否过期（12小时）
+            const currentTime = new Date().getTime();
+            const sessionDuration = 12 * 60 * 60 * 1000;
+            
+            if (currentTime - parseInt(loginTime) > sessionDuration) {
+                sessionStorage.removeItem('admin_logged_in');
+                sessionStorage.removeItem('admin_login_time');
+                window.location.href = '/';
+            }
+        }
+        
+        // 退出登录
+        function logoutAdmin() {
+            sessionStorage.removeItem('admin_logged_in');
+            sessionStorage.removeItem('admin_login_time');
+            window.location.href = '/';
+        }
+        
+        // 选项卡切换
+        function switchTab(tabName) {
+            // 隐藏所有选项卡内容
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 移除所有选项卡按钮的active类
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 显示目标选项卡内容
+            document.getElementById(tabName).classList.add('active');
+            
+            // 激活目标选项卡按钮
+            event.target.classList.add('active');
+            
+            // 如果是控制台选项卡，自动滚动到底部
+            if (tabName === 'console') {
+                setTimeout(() => {
+                    const consoleOutput = document.getElementById('consoleOutput');
+                    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+                }, 100);
+            }
+        }
+        
+        // 更新服务器状态显示
+        function updateServerStatus() {
+            const statusElement = document.getElementById('serverStatus');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            
+            switch(serverStatus) {
+                case 'offline':
+                    statusElement.className = 'server-status status-offline';
+                    statusElement.innerHTML = '<i class="fas fa-circle"></i><span>服务器离线</span>';
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+                    restartBtn.disabled = true;
+                    break;
+                    
+                case 'starting':
+                    statusElement.className = 'server-status status-starting';
+                    statusElement.innerHTML = '<i class="fas fa-circle"></i><span>启动中...</span>';
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    restartBtn.disabled = true;
+                    break;
+                    
+                case 'online':
+                    statusElement.className = 'server-status status-online';
+                    statusElement.innerHTML = '<i class="fas fa-circle"></i><span>在线运行</span>';
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    restartBtn.disabled = false;
+                    break;
+                    
+                case 'stopping':
+                    statusElement.className = 'server-status status-starting';
+                    statusElement.innerHTML = '<i class="fas fa-circle"></i><span>停止中...</span>';
+                    startBtn.disabled = true;
+                    stopBtn.disabled = true;
+                    restartBtn.disabled = true;
+                    break;
+            }
+        }
+        
+        // 控制服务器
+        function controlServer(action) {
+            switch(action) {
+                case 'start':
+                    showToast('正在启动服务器...', 'warning');
+                    serverStatus = 'starting';
+                    updateServerStatus();
+                    
+                    // 模拟API调用
+                    fetch('/api/control', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ action: 'start' })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            serverStatus = 'online';
+                            updateServerStatus();
+                            uptimeStart = new Date();
+                            updateStats();
+                            
+                            addConsoleLine('[INFO] 正在启动服务器...', 'info');
+                            addConsoleLine('[INFO] 加载世界中...', 'info');
+                            addConsoleLine('[INFO] 准备生成...', 'info');
+                            addConsoleLine('[SUCCESS] 服务器已启动完成！', 'success');
+                            
+                            showToast('服务器启动成功！', 'success');
+                        } else {
+                            showToast(data.message || '启动失败', 'error');
+                            serverStatus = 'offline';
+                            updateServerStatus();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('启动错误:', error);
+                        showToast('启动请求失败', 'error');
+                        serverStatus = 'offline';
+                        updateServerStatus();
+                    });
+                    break;
+                    
+                case 'stop':
+                    showToast('正在停止服务器...', 'warning');
+                    serverStatus = 'stopping';
+                    updateServerStatus();
+                    
+                    // 模拟API调用
+                    fetch('/api/control', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ action: 'stop' })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            serverStatus = 'offline';
+                            updateServerStatus();
+                            uptimeStart = null;
+                            connectedPlayers = [];
+                            updatePlayerList();
+                            
+                            addConsoleLine('[INFO] 正在停止服务器...', 'info');
+                            addConsoleLine('[INFO] 正在保存世界...', 'info');
+                            addConsoleLine('[INFO] 关闭连接...', 'info');
+                            addConsoleLine('[SUCCESS] 服务器已安全停止', 'success');
+                            
+                            showToast('服务器已停止', 'success');
+                        } else {
+                            showToast(data.message || '停止失败', 'error');
+                            serverStatus = 'online';
+                            updateServerStatus();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('停止错误:', error);
+                        showToast('停止请求失败', 'error');
+                        serverStatus = 'online';
+                        updateServerStatus();
+                    });
+                    break;
+                    
+                case 'restart':
+                    showToast('正在重启服务器...', 'warning');
+                    serverStatus = 'stopping';
+                    updateServerStatus();
+                    
+                    // 模拟API调用
+                    fetch('/api/control', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ action: 'restart' })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            serverStatus = 'starting';
+                            updateServerStatus();
+                            
+                            addConsoleLine('[INFO] 正在重启服务器...', 'info');
+                            addConsoleLine('[INFO] 关闭服务器...', 'info');
+                            
+                            setTimeout(() => {
+                                serverStatus = 'online';
+                                updateServerStatus();
+                                uptimeStart = new Date();
+                                
+                                addConsoleLine('[INFO] 重新启动中...', 'info');
+                                addConsoleLine('[SUCCESS] 服务器重启完成！', 'success');
+                                
+                                showToast('服务器重启完成', 'success');
+                            }, 3000);
+                        } else {
+                            showToast(data.message || '重启失败', 'error');
+                            serverStatus = 'online';
+                            updateServerStatus();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('重启错误:', error);
+                        showToast('重启请求失败', 'error');
+                        serverStatus = 'online';
+                        updateServerStatus();
+                    });
+                    break;
+            }
+        }
+        
+        // 添加控制台输出
+        function addConsoleLine(text, type = 'info') {
+            const consoleOutput = document.getElementById('consoleOutput');
+            const line = document.createElement('div');
+            line.className = `console-line log-${type}`;
+            line.textContent = text;
+            consoleOutput.appendChild(line);
+            
+            // 自动滚动到底部
+            if (document.getElementById('autoScroll').checked) {
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+            
+            // 保存到日志数组
+            consoleLogs.push({text, type, time: new Date()});
+            if (consoleLogs.length > 1000) {
+                consoleLogs.shift();
+            }
+        }
+        
+        // 清空控制台
+        function clearConsole() {
+            document.getElementById('consoleOutput').innerHTML = '';
+            consoleLogs = [];
+            addConsoleLine('[INFO] 控制台已清空', 'info');
+        }
+        
+        // 刷新控制台
+        function refreshConsole() {
+            addConsoleLine('[INFO] 控制台已刷新', 'info');
+        }
+        
+        // 发送命令
+        function sendCommand() {
+            const input = document.getElementById('commandInput');
+            const command = input.value.trim();
+            
+            if (!command) return;
+            
+            // 显示命令
+            addConsoleLine(`> ${command}`, 'debug');
+            
+            // 模拟API调用
+            fetch('/api/control', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    action: 'command',
+                    command: command 
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    input.value = '';
+                    showToast('命令已发送', 'success');
+                    
+                    // 处理特定命令的响应
+                    if (command === 'list') {
+                        setTimeout(() => {
+                            addConsoleLine('[INFO] 在线玩家 (3): Creeper_xu, .woainitaishi, pojoy3745', 'info');
+                        }, 500);
+                    } else if (command.startsWith('say ')) {
+                        const message = command.substring(4);
+                        setTimeout(() => {
+                            addConsoleLine(`[服务器] ${message}`, 'info');
+                        }, 500);
+                    }
+                } else {
+                    showToast(data.message || '命令发送失败', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('命令错误:', error);
+                showToast('命令发送失败', 'error');
+            });
+            
+            input.focus();
+        }
+        
+        // 创建备份
+        function createBackup() {
+            if (serverStatus === 'online') {
+                showToast('服务器运行中，无法创建备份', 'error');
+                return;
+            }
+            
+            showToast('正在创建备份...', 'warning');
+            
+            // 模拟API调用
+            fetch('/api/backup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const backupTime = new Date().toLocaleString('zh-CN');
+                    const backupSize = (Math.random() * 2 + 1).toFixed(1); // 1-3GB
+                    
+                    // 添加到备份列表
+                    const backupList = document.getElementById('backupList');
+                    if (backupList.querySelector('.text-center')) {
+                        backupList.innerHTML = '';
+                    }
+                    
+                    const backupItem = document.createElement('div');
+                    backupItem.className = 'bg-gray-700 p-4 rounded-lg';
+                    backupItem.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <div class="font-semibold">备份 ${backupTime}</div>
+                                <div class="text-sm text-gray-400">大小: ${backupSize}GB</div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="downloadBackup('${backupTime}')" class="text-sm text-blue-400 hover:text-blue-300">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                                <button onclick="restoreBackup('${backupTime}')" class="text-sm text-green-400 hover:text-green-300">
+                                    <i class="fas fa-history mr-1"></i>恢复
+                                </button>
+                                <button onclick="deleteBackup('${backupTime}')" class="text-sm text-red-400 hover:text-red-300">
+                                    <i class="fas fa-trash mr-1"></i>删除
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    backupList.prepend(backupItem);
+                    showToast('备份创建成功', 'success');
+                    addConsoleLine(`[INFO] 备份已创建: ${backupTime}`, 'success');
+                } else {
+                    showToast(data.error || '备份创建失败', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('备份错误:', error);
+                showToast('备份创建失败', 'error');
+            });
+        }
+        
+        // 下载备份
+        function downloadBackup(backupName) {
+            showToast(`正在下载备份: ${backupName}`, 'warning');
+            setTimeout(() => {
+                showToast('备份下载开始', 'success');
+            }, 1000);
+        }
+        
+        // 恢复备份
+        function restoreBackup(backupName) {
+            if (serverStatus === 'online') {
+                showToast('服务器运行中，无法恢复备份', 'error');
+                return;
+            }
+            
+            if (confirm(`确定要恢复备份 ${backupName} 吗？这将覆盖当前世界数据。`)) {
+                showToast(`正在恢复备份: ${backupName}...`, 'warning');
+                setTimeout(() => {
+                    showToast('备份恢复成功', 'success');
+                    addConsoleLine(`[INFO] 已恢复备份: ${backupName}`, 'success');
+                }, 2000);
+            }
+        }
+        
+        // 删除备份
+        function deleteBackup(backupName) {
+            if (confirm(`确定要删除备份 ${backupName} 吗？`)) {
+                showToast(`正在删除备份: ${backupName}...`, 'warning');
+                setTimeout(() => {
+                    showToast('备份已删除', 'success');
+                    addConsoleLine(`[INFO] 已删除备份: ${backupName}`, 'info');
+                }, 1000);
+            }
+        }
+        
+        // 下载所有备份
+        function downloadAllBackups() {
+            showToast('正在准备下载所有备份...', 'warning');
+            setTimeout(() => {
+                showToast('所有备份已打包，开始下载', 'success');
+            }, 1500);
+        }
+        
+        // 更新玩家列表
+        function updatePlayerList() {
+            const playerList = document.getElementById('playerList');
+            
+            if (connectedPlayers.length === 0) {
+                playerList.innerHTML = `
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-user-slash text-3xl mb-3"></i>
+                        <p>暂无在线玩家</p>
+                        <p class="text-sm mt-2">当玩家加入服务器时，这里会显示玩家列表</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            playerList.innerHTML = '';
+            connectedPlayers.forEach(player => {
+                const playerItem = document.createElement('div');
+                playerItem.className = 'player-item';
+                playerItem.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">${player}</div>
+                            <div class="text-xs text-gray-400">在线时间: 1小时</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="sendMessageToPlayer('${player}')" class="text-sm text-blue-400 hover:text-blue-300">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button onclick="kickPlayer('${player}')" class="text-sm text-red-400 hover:text-red-300">
+                            <i class="fas fa-user-slash"></i>
+                        </button>
+                    </div>
+                `;
+                playerList.appendChild(playerItem);
+            });
+        }
+        
+        // 踢出玩家
+        function kickPlayer(playerName = null) {
+            const player = playerName || document.getElementById('kickPlayerInput').value.trim();
+            
+            if (!player) {
+                showToast('请输入玩家名称', 'error');
+                return;
+            }
+            
+            if (confirm(`确定要踢出玩家 ${player} 吗？`)) {
+                // 模拟踢出玩家
+                addConsoleLine(`[INFO] 已踢出玩家 ${player}`, 'warn');
+                showToast(`已踢出玩家 ${player}`, 'success');
+                
+                // 从列表中移除
+                const index = connectedPlayers.indexOf(player);
+                if (index > -1) {
+                    connectedPlayers.splice(index, 1);
+                    updatePlayerList();
+                }
+                
+                document.getElementById('kickPlayerInput').value = '';
+            }
+        }
+        
+        // 封禁玩家
+        function banPlayer() {
+            const player = document.getElementById('kickPlayerInput').value.trim();
+            
+            if (!player) {
+                showToast('请输入玩家名称', 'error');
+                return;
+            }
+            
+            if (confirm(`确定要封禁玩家 ${player} 吗？`)) {
+                // 模拟封禁玩家
+                addConsoleLine(`[INFO] 已封禁玩家 ${player}`, 'warn');
+                showToast(`已封禁玩家 ${player}`, 'success');
+                
+                document.getElementById('kickPlayerInput').value = '';
+            }
+        }
+        
+        // 给玩家发送消息
+        function sendMessageToPlayer(player) {
+            const message = prompt(`给 ${player} 发送消息:`);
+            if (message) {
+                addConsoleLine(`[私信] 给 ${player}: ${message}`, 'info');
+                showToast(`消息已发送给 ${player}`, 'success');
+            }
+        }
+        
+        // 保存设置
+        function saveSettings() {
+            const settings = {
+                maxPlayers: document.getElementById('maxPlayers').value,
+                gameMode: document.getElementById('gameMode').value,
+                difficulty: document.getElementById('difficulty').value,
+                viewDistance: document.getElementById('viewDistance').value,
+                autoStart: document.getElementById('autoStart').checked,
+                autoBackup: document.getElementById('autoBackup').checked,
+                maintenanceMode: document.getElementById('maintenanceMode').checked,
+                whitelist: document.getElementById('whitelist').checked
+            };
+            
+            // 模拟保存设置
+            localStorage.setItem('serverSettings', JSON.stringify(settings));
+            
+            showToast('设置已保存', 'success');
+            addConsoleLine('[INFO] 服务器设置已更新', 'info');
+        }
+        
+        // 加载设置
+        function loadSettings() {
+            const savedSettings = localStorage.getItem('serverSettings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                document.getElementById('maxPlayers').value = settings.maxPlayers || 20;
+                document.getElementById('gameMode').value = settings.gameMode || 'survival';
+                document.getElementById('difficulty').value = settings.difficulty || 'normal';
+                document.getElementById('viewDistance').value = settings.viewDistance || 10;
+                document.getElementById('autoStart').checked = settings.autoStart !== false;
+                document.getElementById('autoBackup').checked = settings.autoBackup !== false;
+                document.getElementById('maintenanceMode').checked = settings.maintenanceMode || false;
+                document.getElementById('whitelist').checked = settings.whitelist || false;
+            }
+        }
+        
+        // 更新统计数据
+        function updateStats() {
+            // CPU使用率模拟
+            const cpuUsage = serverStatus === 'online' ? 
+                Math.floor(Math.random() * 20 + 30) : 0;
+            document.getElementById('cpuUsage').textContent = `${cpuUsage}%`;
+            
+            // 内存使用模拟
+            const memoryUsage = serverStatus === 'online' ? 
+                Math.floor(Math.random() * 512 + 1024) : 0;
+            document.getElementById('memoryUsage').textContent = `${memoryUsage} MB`;
+            
+            // 玩家数量
+            const playerCount = serverStatus === 'online' ? connectedPlayers.length : 0;
+            document.getElementById('playerCount').textContent = `${playerCount}/20`;
+            
+            // 运行时间
+            if (uptimeStart && serverStatus === 'online') {
+                const now = new Date();
+                const diff = Math.floor((now - uptimeStart) / 1000);
+                const hours = Math.floor(diff / 3600).toString().padStart(2, '0');
+                const minutes = Math.floor((diff % 3600) / 60).toString().padStart(2, '0');
+                const seconds = (diff % 60).toString().padStart(2, '0');
+                document.getElementById('uptime').textContent = `${hours}:${minutes}:${seconds}`;
+            } else {
+                document.getElementById('uptime').textContent = '00:00:00';
+            }
+            
+            // 更新启动次数（模拟）
+            if (serverStatus === 'online' && Math.random() > 0.7) {
+                const count = parseInt(document.getElementById('startCount').textContent || '0');
+                document.getElementById('startCount').textContent = count + 1;
+            }
+        }
+        
+        // 模拟玩家加入/离开
+        function simulatePlayerActivity() {
+            if (serverStatus !== 'online') return;
+            
+            const players = ['Creeper_xu', '.woainitaishi', 'pojoy3745', 'Steve', 'Alex', 'Herobrine'];
+            
+            // 随机玩家加入
+            if (Math.random() > 0.7 && connectedPlayers.length < 20) {
+                const newPlayer = players[Math.floor(Math.random() * players.length)];
+                if (!connectedPlayers.includes(newPlayer)) {
+                    connectedPlayers.push(newPlayer);
+                    updatePlayerList();
+                    addConsoleLine(`[INFO] ${newPlayer} joined the game`, 'info');
+                }
+            }
+            
+            // 随机玩家离开
+            if (Math.random() > 0.8 && connectedPlayers.length > 0) {
+                const index = Math.floor(Math.random() * connectedPlayers.length);
+                const leavingPlayer = connectedPlayers[index];
+                connectedPlayers.splice(index, 1);
+                updatePlayerList();
+                addConsoleLine(`[INFO] ${leavingPlayer} left the game`, 'info');
+            }
+        }
+        
+        // 显示通知
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-exclamation-triangle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+        
+        // 更新当前时间
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('currentTime').textContent = timeString;
+        }
+        
+        // 获取服务器真实状态
+        function fetchServerStatus() {
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    // 更新服务器状态
+                    if (data.status === 'online') {
+                        serverStatus = 'online';
+                        if (!uptimeStart) uptimeStart = new Date(data.start_time || new Date());
+                    } else if (data.status === 'offline') {
+                        serverStatus = 'offline';
+                        uptimeStart = null;
+                    }
+                    
+                    // 更新玩家列表
+                    if (data.players && Array.isArray(data.players)) {
+                        connectedPlayers = data.players;
+                        updatePlayerList();
+                    }
+                    
+                    updateServerStatus();
+                    updateStats();
+                })
+                .catch(error => {
+                    console.error('获取服务器状态失败:', error);
+                });
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查登录状态
+            checkLogin();
+            
+            // 加载设置
+            loadSettings();
+            
+            // 初始状态
+            updateServerStatus();
+            updateCurrentTime();
+            
+            // 获取真实服务器状态
+            fetchServerStatus();
+            
+            // 每5秒更新一次统计
+            setInterval(updateStats, 5000);
+            
+            // 每10秒更新服务器状态
+            setInterval(fetchServerStatus, 10000);
+            
+            // 每30秒模拟玩家活动
+            setInterval(simulatePlayerActivity, 30000);
+            
+            // 每秒更新当前时间
+            setInterval(updateCurrentTime, 1000);
+            
+            // 模拟一些初始日志
+            setTimeout(() => {
+                if (serverStatus === 'offline') {
+                    addConsoleLine('[INFO] 服务器管理面板已就绪', 'info');
+                    addConsoleLine('[INFO] 等待启动服务器...', 'info');
+                }
+            }, 1000);
+            
+            // 监听键盘快捷键
+            document.addEventListener('keydown', function(e) {
+                // Ctrl + Enter 发送命令
+                if (e.ctrlKey && e.key === 'Enter') {
+                    sendCommand();
+                }
+                
+                // ESC 清除命令输入
+                if (e.key === 'Escape') {
+                    document.getElementById('commandInput').value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
