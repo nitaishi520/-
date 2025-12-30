@@ -58,21 +58,166 @@
             70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
             100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
         }
-        .compensation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
+        
+        /* 管理员登录相关样式 */
+        .admin-login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
         }
-        .player-card {
-            background: rgba(55, 65, 81, 0.8);
-            border-radius: 8px;
-            padding: 16px;
-            border-left: 4px solid;
+
+        .login-content {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #3a7d34;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease-out;
         }
-        .player-creeper { border-left-color: #22c55e; }
-        .player-woainitaishi { border-left-color: #3b82f6; }
-        .player-pojoy { border-left-color: #a855f7; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h3 {
+            font-size: 1.5rem;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #d1d5db;
+            font-weight: 500;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #3a7d34 0%, #306230 100%);
+            color: white;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(58, 125, 52, 0.5);
+        }
+
+        .login-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            color: #10b981;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .admin-login-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: linear-gradient(135deg, #3a7d34 0%, #306230 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .admin-login-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .admin-access-btn {
+            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .admin-access-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(147, 51, 234, 0.5);
+        }
         
         /* 弹窗样式 */
         .announcement-modal {
@@ -131,9 +276,63 @@
         .close-btn:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+        
+        .compensation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .player-card {
+            background: rgba(55, 65, 81, 0.8);
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 4px solid;
+        }
+        .player-creeper { border-left-color: #22c55e; }
+        .player-woainitaishi { border-left-color: #3b82f6; }
+        .player-pojoy { border-left-color: #a855f7; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
+    <!-- 管理员登录按钮（固定在右下角） -->
+    <button id="adminLoginBtn" class="admin-login-btn" onclick="openAdminLogin()">
+        <i class="fas fa-lock"></i>
+    </button>
+
+    <!-- 管理员登录弹窗 -->
+    <div id="adminLoginModal" class="admin-login-modal">
+        <div class="login-content">
+            <div class="login-header">
+                <h3>🛡️ 服务器管理面板</h3>
+                <p>仅限服主和管理员访问</p>
+            </div>
+            
+            <form id="adminLoginForm" class="login-form" onsubmit="return submitAdminLogin(event)">
+                <div class="form-group">
+                    <label for="adminPassword">管理密码</label>
+                    <input type="password" id="adminPassword" placeholder="请输入管理密码" required>
+                </div>
+                
+                <div id="loginError" class="error-message">
+                    <i class="fas fa-exclamation-circle"></i> 密码错误，请重试
+                </div>
+                
+                <div id="loginSuccess" class="success-message">
+                    <i class="fas fa-check-circle"></i> 登录成功！正在跳转...
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt mr-2"></i> 登录管理面板
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>密码提示：fwqnitaishi520</p>
+            </div>
+        </div>
+    </div>
+
     <!-- 导航栏 -->
     <nav class="bg-gray-800 shadow-sm sticky top-0 z-10">
         <div class="max-w-6xl mx-auto px-4">
@@ -561,6 +760,103 @@
 
     <!-- JavaScript -->
     <script>
+        // 管理员登录功能
+        const ADMIN_PASSWORD = "fwqnitaishi520";
+
+        // 打开登录弹窗
+        function openAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'flex';
+            document.getElementById('adminPassword').focus();
+        }
+
+        // 关闭登录弹窗
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('loginSuccess').style.display = 'none';
+        }
+
+        // 提交登录表单
+        function submitAdminLogin(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            const errorMsg = document.getElementById('loginError');
+            const successMsg = document.getElementById('loginSuccess');
+            
+            // 隐藏之前的消息
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            
+            if (password === ADMIN_PASSWORD) {
+                // 登录成功
+                successMsg.style.display = 'block';
+                
+                // 将登录状态存储到sessionStorage
+                sessionStorage.setItem('admin_logged_in', 'true');
+                sessionStorage.setItem('admin_login_time', new Date().getTime());
+                
+                // 2秒后跳转到控制面板
+                setTimeout(function() {
+                    window.location.href = '/admin';
+                }, 2000);
+                
+                return false;
+            } else {
+                // 登录失败
+                errorMsg.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+                return false;
+            }
+        }
+
+        // 点击弹窗外部关闭
+        document.getElementById('adminLoginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdminLogin();
+            }
+        });
+
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAdminLogin();
+            }
+        });
+
+        // 检查是否已经登录（防止重复登录）
+        function checkAdminSession() {
+            const loggedIn = sessionStorage.getItem('admin_logged_in');
+            const loginTime = sessionStorage.getItem('admin_login_time');
+            
+            if (loggedIn && loginTime) {
+                // 检查登录是否过期（12小时）
+                const currentTime = new Date().getTime();
+                const sessionDuration = 12 * 60 * 60 * 1000; // 12小时
+                
+                if (currentTime - parseInt(loginTime) > sessionDuration) {
+                    // 会话过期
+                    sessionStorage.removeItem('admin_logged_in');
+                    sessionStorage.removeItem('admin_login_time');
+                } else {
+                    // 在导航栏显示管理员入口
+                    const nav = document.querySelector('.space-x-6');
+                    if (nav) {
+                        const adminLink = document.createElement('a');
+                        adminLink.href = '/admin';
+                        adminLink.className = 'admin-access-btn';
+                        adminLink.innerHTML = '<i class="fas fa-cogs"></i> 管理面板';
+                        nav.appendChild(adminLink);
+                    }
+                }
+            }
+        }
+
+        // 页面加载时检查会话
+        document.addEventListener('DOMContentLoaded', checkAdminSession);
+
         // 移动端菜单切换
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
